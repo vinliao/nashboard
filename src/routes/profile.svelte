@@ -1,6 +1,8 @@
 <script>
 	import Tweet from '$lib/Tweet.svelte';
 	const replied = {message: "reply one", time: "2m", pubkey: "54f18...8f2a9"};
+	// link.com/p/<pubkey>
+	// link.com/e/<eventid>
 </script>
 
 <div class="mb-5"></div>
