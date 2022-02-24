@@ -1,16 +1,15 @@
-<script context="module">
-	export const prerender = true;
-</script>
-
 <script>
-	import Counter from '$lib/Counter.svelte';
+	import Count from '$lib/Count.svelte';
+	import Activity from '$lib/Activity.svelte';
+	import Relay from '$lib/Relay.svelte';
 </script>
-
-<svelte:head>
-	<title>Home</title>
-</svelte:head>
 
 <section>
-	<p class="text-3xl">first time using sveltekit</p>
-	<p class="underline">from tailwind</p>
+	<div class="m-2">
+		<Count/>
+		<div class="mb-3"></div>
+		<Relay/>
+		<div class="mb-3"></div>
+		<Activity/>
+	</div>
 </section>
