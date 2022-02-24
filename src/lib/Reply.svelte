@@ -7,8 +7,8 @@
 </script>
 
 <div class="" style:padding-left={depth * 0.75 + "rem"}>
-  <div class="border-l-4 border-slate-800 p-3 my-1 ml-3 rounded-md">
-    <div class="flex justify-between mb-2">
+  <div class="border-l-4 border-slate-800 pl-2 pr-3 py-1 my-1 ml-3 rounded-md">
+    <div class="flex justify-between">
       <span class="font-bold">{pubkey}</span>
       <span class="text-slate-400">{time}</span>
     </div>
