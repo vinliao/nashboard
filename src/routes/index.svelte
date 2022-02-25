@@ -14,11 +14,9 @@
 		<div class="mb-3"></div>
 		<Average/>
 		<div class="mb-3"></div>
-		<Data/>
+		<Activity/>
 		<div class="mb-3"></div>
 		<Relay/>
-		<div class="mb-3"></div>
-		<Activity/>
 		<div class="mb-3"></div>
 		<Latest/>
 		<div class="mb-3"></div>
