@@ -13,7 +13,8 @@
 	import { onMount } from "svelte";
 	import _ from "underscore";
 
-	let events = [];
+	// initial dummy event object
+	let events = [{message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum!", time: 1, pubkey: "0000000000"}];
 
 	let eventCount24h = 0;
 	let eventCount1h = 0;
@@ -92,17 +93,11 @@
 	});
 </script>
 
-<section>
-	<div class="m-2 max-w-3xl sm:flex sm:w-screen sm:mx-auto sm:space-x-2">
-		<div class="flex-none space-y-2">
+<section class="bg-gradient-to-r from-pink-100 to-orange-200">
+	<div class="p-2 max-w-3xl sm:flex sm:w-screen sm:mx-auto sm:space-x-2">
+		<div class="flex-none space-y-2 sm:space-y-4">
 			<Count {eventCount1h} {eventCount24h} />
-			<!-- <div class="mb-3" />
-			<Kind {kind1} {kind4} {kindOther}/> -->
-			<!-- <div class="mb-3" /> -->
-			<!-- <Average/>
-			<div class="mb-3"></div> -->
 			<Activity {networkActivity} />
-			<!-- <div class="mb-3" /> -->
 			<Relay {relays} {relayActivity}/>
 		</div>
 
@@ -110,7 +105,7 @@
 			<Dots />
 		</div>
 
-		<div class="rounded-md shadow border p-3">
+		<div class="rounded-md shadow p-3 bg-white">
 			<span class="block text-center pb-3 text-xs text-neutral-400">NOSTR NETWORK'S LATEST EVENTS</span>
 			<div class="flex flex-col">
 				{#each events as tweet}
@@ -118,6 +113,6 @@
 				{/each}
 			</div>
 		</div>
-
+		<p></p>
 	</div>
 </section>

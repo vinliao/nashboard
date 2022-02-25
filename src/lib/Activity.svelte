@@ -16,7 +16,7 @@
   }
 </script>
 
-<div class="rounded-md shadow border p-3">
+<div class="rounded-md shadow p-3 bg-white">
 	<span class="block text-center pb-3 text-xs text-neutral-400">NETWORK ACTIVITY (24H, UTC)</span>
   <div class="flex px-4">
     <div class="flex flex-col flex-1">

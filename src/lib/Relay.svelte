@@ -3,7 +3,7 @@
 	export let relayActivity;
 </script>
 
-<div class="rounded-md shadow border p-3">
+<div class="rounded-md shadow p-3 bg-white">
 	<span class="block text-center pb-3 text-xs text-neutral-400">EVENTS RECEIVED BY RELAY LAST 24H</span>
 	<div class="flex flex-col">
 		{#each relays as relay, i}
