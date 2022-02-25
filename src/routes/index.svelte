@@ -93,17 +93,22 @@
 </script>
 
 <section>
-	<div class="m-2">
-		<Count {eventCount1h} {eventCount24h} />
-		<div class="mb-3" />
-		<Kind {kind1} {kind4} {kindOther}/>
-		<div class="mb-3" />
-		<!-- <Average/>
-		<div class="mb-3"></div> -->
-		<Activity {networkActivity} />
-		<div class="mb-3" />
-		<Relay {relays} {relayActivity}/>
-		<Dots />
+	<div class="m-2 max-w-3xl sm:flex">
+		<div class="flex-none">
+			<Count {eventCount1h} {eventCount24h} />
+			<!-- <div class="mb-3" />
+			<Kind {kind1} {kind4} {kindOther}/> -->
+			<div class="mb-3" />
+			<!-- <Average/>
+			<div class="mb-3"></div> -->
+			<Activity {networkActivity} />
+			<div class="mb-3" />
+			<Relay {relays} {relayActivity}/>
+		</div>
+
+		<div class="sm:invisible">
+			<Dots />
+		</div>
 
 		<div class="rounded-md shadow border p-3">
 			<span class="block text-center pb-3 text-xs text-neutral-400">NOSTR NETWORK'S LATEST EVENTS</span>

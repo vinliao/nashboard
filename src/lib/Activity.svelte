@@ -22,16 +22,16 @@
     <div class="flex flex-col flex-1">
       {#each timeArrFirst as time, i}
         <div class="flex p-2">
-          <span class="shrink text-neutral-400">{time}</span>
-          <span class="flex-1 text-neutral-500 self-start">{networkActivity[i]} evt</span>
+          <span class="text-neutral-400">{time}</span>
+          <span class="text-neutral-500 self-start">{networkActivity[i]} evt</span>
         </div>
       {/each}
     </div>
     <div class="flex flex-col flex-1">
       {#each timeArrSecond as time, i}
         <div class="flex p-2">
-          <span class="flex-1 text-neutral-400 text-right">{time}</span>
-          <span class="shrink text-neutral-500">{networkActivity[i+12]} evt</span>
+          <span class="text-neutral-400">{time}</span>
+          <span class="text-neutral-500">{networkActivity[i+12]} evt</span>
         </div>
       {/each}
     </div>
