@@ -101,8 +101,8 @@
 </script>
 
 <section class="bg-gradient-to-r from-pink-100 to-orange-200">
-	<div class="p-2 max-w-3xl sm:flex sm:w-screen sm:mx-auto sm:space-x-2">
-		<div class="flex-none space-y-2 sm:space-y-4">
+	<div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-2">
+		<div class="sm:w-1/2 space-y-2 sm:space-y-4">
 			<Count {eventCount1h} {eventCount24h} />
 			<Activity {networkActivity} />
 			<Relay {relays} {relayActivity} />
@@ -112,7 +112,7 @@
 			<Dots />
 		</div>
 
-		<div class="rounded-md shadow p-3 bg-white">
+		<div class="rounded-md shadow p-3 bg-white sm:w-1/2">
 			<span class="block text-center pb-3 text-xs text-neutral-400"
 				>NOSTR NETWORK'S LATEST EVENTS</span
 			>
@@ -122,6 +122,5 @@
 				{/each}
 			</div>
 		</div>
-		<p />
 	</div>
 </section>
