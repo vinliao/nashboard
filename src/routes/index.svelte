@@ -93,16 +93,16 @@
 </script>
 
 <section>
-	<div class="m-2 max-w-3xl sm:flex">
-		<div class="flex-none">
+	<div class="m-2 max-w-3xl sm:flex sm:w-screen sm:mx-auto sm:space-x-2">
+		<div class="flex-none space-y-2">
 			<Count {eventCount1h} {eventCount24h} />
 			<!-- <div class="mb-3" />
 			<Kind {kind1} {kind4} {kindOther}/> -->
-			<div class="mb-3" />
+			<!-- <div class="mb-3" /> -->
 			<!-- <Average/>
 			<div class="mb-3"></div> -->
 			<Activity {networkActivity} />
-			<div class="mb-3" />
+			<!-- <div class="mb-3" /> -->
 			<Relay {relays} {relayActivity}/>
 		</div>
 
