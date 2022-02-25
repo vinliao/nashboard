@@ -7,12 +7,21 @@
 	import Average from '$lib/Average.svelte';
 	import Unique from '$lib/Unique.svelte';
 	import Dots from '$lib/Dots.svelte';
+	import Kind from '$lib/Kind.svelte';
+	import Tweet from '$lib/Tweet.svelte';
 
-	import { onMount } from 'svelte';
+	import { onMount } from "svelte";
+	import _ from "underscore";
+
+	let events = [];
 
 	let eventCount24h = 0;
 	let eventCount1h = 0;
 	let networkActivity = Array(24).fill(0); // array index is hour
+
+	let kind1 = 0;
+	let kind4 = 0;
+	let kindOther = 0;
 
 	const unixTime = Math.floor(Date.now() / 1000);
 	const unixTimeMinus24h = unixTime - 60 * 60 * 24;
@@ -39,7 +48,6 @@
 	// only do it on front end
 	onMount(() => {
 		relays.forEach((url, relayIndex) => {
-		// let url = 'wss://nostr-pub.wellorder.net';
 			let socket = new WebSocket(url);
 
 			socket.onopen = function (event) {
@@ -51,6 +59,8 @@
 
 			// // take data and parse here
 			socket.onmessage = function (incomingPayload) {
+				// spits out lots of error when parsing
+				// Uncaught SyntaxError: Unexpected token P in JSON at position 0
 				const payload = JSON.parse(incomingPayload.data);
 				const event = payload[2];
 				const eventDate = new Date(event.created_at * 1000);
@@ -59,14 +69,26 @@
 				eventCount24h++;
 				if (event.created_at > unixTimeMinus1h) eventCount1h++;
 
+				// count kinds
+				if(event.kind == "1") kind1++;
+				else if(event.kind == "4") kind4++;
+				else kindOther++;
+
 				// count peak event
 				const eventHour = eventDate.getUTCHours();
 				networkActivity[eventHour]++;
 
 				// count relay activity
 				relayActivity[relayIndex]++;
+
+				// show tweets
+				let tweet = {"message": event.content, "time": parseInt(event.created_at), "id": event.id, "pubkey": event.pubkey};
+				events.push(tweet);
+				const uniqueEvents = _.uniq(events);
+				const sortedEvents = _.sortBy(uniqueEvents, "time");
+				events = sortedEvents.reverse().slice(0, 20);
 			};
-		})
+		});
 	});
 </script>
 
@@ -74,14 +96,23 @@
 	<div class="m-2">
 		<Count {eventCount1h} {eventCount24h} />
 		<div class="mb-3" />
+		<Kind {kind1} {kind4} {kindOther}/>
+		<div class="mb-3" />
 		<!-- <Average/>
 		<div class="mb-3"></div> -->
 		<Activity {networkActivity} />
 		<div class="mb-3" />
 		<Relay {relays} {relayActivity}/>
 		<Dots />
-		<Latest />
-		<div class="mb-3" />
-		<Unique />
+
+		<div class="rounded-md shadow border p-3">
+			<span class="block text-center pb-3 text-xs text-neutral-400">NOSTR NETWORK'S LATEST EVENTS</span>
+			<div class="flex flex-col">
+				{#each events as tweet}
+					<Tweet time={tweet.time} pubkey={tweet.pubkey} message={tweet.message}/>
+				{/each}
+			</div>
+		</div>
+
 	</div>
 </section>
