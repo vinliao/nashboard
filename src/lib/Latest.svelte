@@ -1,14 +1,17 @@
 <script>
 	import Tweet from "./Tweet.svelte";
-	export let events;
-	const latestEvents = [...new Set(events)].slice(-20).reverse();
-	const replied = {message: "reply one", time: "2m", pubkey: "54f18...8f2a9"};
+	export let events; // events are still actually very messy
+	const uniqueEvents = [...new Set(events)];
+	const sortedEvents = uniqueEvents.sort((a, b) => {
+		return b.created_at - a.created_at
+	}).slice(0, 20);
 </script>
 
 <div class="rounded-md shadow border p-3">
 	<span class="block text-center pb-3 text-xs text-neutral-400">NOSTR NETWORK'S LATEST EVENTS</span>
 	<div class="flex flex-col">
-	{#each latestEvents as event}
+		<!-- <p>{events.length}</p> -->
+	{#each sortedEvents as event}
 		<Tweet
 			message={event.content}
 			time={event.created_at}

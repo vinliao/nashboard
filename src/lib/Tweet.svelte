@@ -1,4 +1,5 @@
 <script>
+  import { format } from "timeago.js";
   export let time;
   export let message;
   export let pubkey;
@@ -7,8 +8,8 @@
 
 <div class="p-3 rounded-md">
   <div class="flex justify-between mb-2">
-    <span>{pubkey}</span>
-    <span class="text-neutral-400">{time}</span>
+    <span>{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span>
+    <span class="text-neutral-400">{format(time + "000", "en_short")}</span>
   </div>
   {#if replied}
     <div class="my-1 pl-3 border-l-4 border-slate-800 rounded-md">
