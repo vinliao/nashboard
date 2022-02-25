@@ -6,6 +6,7 @@
 	import Latest from '$lib/Latest.svelte';
 	import Average from '$lib/Average.svelte';
 	import Unique from '$lib/Unique.svelte';
+	import Dots from '$lib/Dots.svelte';
 </script>
 
 <section>
@@ -17,7 +18,7 @@
 		<Activity/>
 		<div class="mb-3"></div>
 		<Relay/>
-		<div class="mb-3"></div>
+		<Dots/>
 		<Latest/>
 		<div class="mb-3"></div>
 		<Unique/>

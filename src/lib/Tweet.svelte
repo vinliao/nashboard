@@ -7,7 +7,7 @@
 
 <div class="p-3 rounded-md">
   <div class="flex justify-between mb-2">
-    <span class="font-bold">{pubkey}</span>
+    <span>{pubkey}</span>
     <span class="text-neutral-400">{time}</span>
   </div>
   {#if replied}
@@ -16,8 +16,8 @@
         <span class="text-sm">{replied.pubkey}</span>
         <div></div>
       </div>
-      <div class="text-neutral-500 text-sm break-words">{replied.message}</div>
+      <div class="text-neutral-400 text-sm break-words">{replied.message}</div>
     </div>
   {/if}
-  <div class="mb-2 break-words">{message}</div>
+  <div class="mb-2 break-words text-neutral-600">{message}</div>
 </div>
