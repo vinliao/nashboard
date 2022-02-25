@@ -12,5 +12,6 @@
 				<span class="shrink text-neutral-400">{relayActivity[i]}</span>
 			</div>
 		{/each}
+		<a href="https://github.com/vinliao/relayed" class="p-2 text-center block text-orange-700">Add your relay?</a>
   </div>
 </div>
