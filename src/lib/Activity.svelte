@@ -1,4 +1,5 @@
 <script>
+  export let networkActivity;
   let timeArrFirst = [];
   let timeArrSecond = [];
 
@@ -19,18 +20,18 @@
 	<span class="block text-center pb-3 text-xs text-neutral-400">NETWORK ACTIVITY (24H, UTC)</span>
   <div class="flex px-4">
     <div class="flex flex-col flex-1">
-      {#each timeArrFirst as time}
+      {#each timeArrFirst as time, i}
         <div class="flex p-2">
           <span class="shrink text-neutral-400">{time}</span>
-          <span class="flex-1 text-neutral-500 self-start">24 evt</span>
+          <span class="flex-1 text-neutral-500 self-start">{networkActivity[i]} evt</span>
         </div>
       {/each}
     </div>
     <div class="flex flex-col flex-1">
-      {#each timeArrSecond as time}
+      {#each timeArrSecond as time, i}
         <div class="flex p-2">
           <span class="flex-1 text-neutral-400 text-right">{time}</span>
-          <span class="shrink text-neutral-500">24 evt</span>
+          <span class="shrink text-neutral-500">{networkActivity[i+12]} evt</span>
         </div>
       {/each}
     </div>

@@ -32,14 +32,17 @@
 
 		// // take data and parse here
 		socket.onmessage = function (incomingPayload) {
-			let payload = JSON.parse(incomingPayload.data);
-			let event = payload[2];
+			const payload = JSON.parse(incomingPayload.data);
+			const event = payload[2];
+			const eventDate = new Date(event.created_at * 1000);
 
 			// count total event
 			eventCount24h++;
 			if(event.created_at > unixTimeMinus1h) eventCount1h++;
 
 			// count peak event
+			const eventHour = eventDate.getUTCHours();
+			networkActivity[eventHour]++;
 		}
 	})
 </script>
@@ -50,7 +53,7 @@
 		<div class="mb-3"></div>
 		<!-- <Average/>
 		<div class="mb-3"></div> -->
-		<Activity/>
+		<Activity networkActivity={networkActivity}/>
 		<div class="mb-3"></div>
 		<Relay/>
 		<Dots/>
