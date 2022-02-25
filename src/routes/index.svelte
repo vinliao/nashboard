@@ -2,19 +2,21 @@
 	import Count from '$lib/Count.svelte';
 	import Activity from '$lib/Activity.svelte';
 	import Relay from '$lib/Relay.svelte';
-	import Data from '$lib/Data.svelte';
-	import Latest from '$lib/Latest.svelte';
-	import Average from '$lib/Average.svelte';
-	import Unique from '$lib/Unique.svelte';
 	import Dots from '$lib/Dots.svelte';
-	import Kind from '$lib/Kind.svelte';
 	import Tweet from '$lib/Tweet.svelte';
 
-	import { onMount } from "svelte";
-	import _ from "underscore";
+	import { onMount } from 'svelte';
+	import _ from 'underscore';
 
 	// initial dummy event object
-	let events = [{message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum!", time: 1, pubkey: "0000000000"}];
+	let events = [
+		{
+			message:
+				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum!',
+			time: 1,
+			pubkey: '0000000000'
+		}
+	];
 
 	let eventCount24h = 0;
 	let eventCount1h = 0;
@@ -71,8 +73,8 @@
 				if (event.created_at > unixTimeMinus1h) eventCount1h++;
 
 				// count kinds
-				if(event.kind == "1") kind1++;
-				else if(event.kind == "4") kind4++;
+				if (event.kind == '1') kind1++;
+				else if (event.kind == '4') kind4++;
 				else kindOther++;
 
 				// count peak event
@@ -83,10 +85,15 @@
 				relayActivity[relayIndex]++;
 
 				// show tweets
-				let tweet = {"message": event.content, "time": parseInt(event.created_at), "id": event.id, "pubkey": event.pubkey};
+				let tweet = {
+					message: event.content,
+					time: parseInt(event.created_at),
+					id: event.id,
+					pubkey: event.pubkey
+				};
 				events.push(tweet);
 				const uniqueEvents = _.uniq(events);
-				const sortedEvents = _.sortBy(uniqueEvents, "time");
+				const sortedEvents = _.sortBy(uniqueEvents, 'time');
 				events = sortedEvents.reverse().slice(0, 20);
 			};
 		});
@@ -98,7 +105,7 @@
 		<div class="flex-none space-y-2 sm:space-y-4">
 			<Count {eventCount1h} {eventCount24h} />
 			<Activity {networkActivity} />
-			<Relay {relays} {relayActivity}/>
+			<Relay {relays} {relayActivity} />
 		</div>
 
 		<div class="sm:invisible">
@@ -106,13 +113,15 @@
 		</div>
 
 		<div class="rounded-md shadow p-3 bg-white">
-			<span class="block text-center pb-3 text-xs text-neutral-400">NOSTR NETWORK'S LATEST EVENTS</span>
+			<span class="block text-center pb-3 text-xs text-neutral-400"
+				>NOSTR NETWORK'S LATEST EVENTS</span
+			>
 			<div class="flex flex-col">
 				{#each events as tweet}
-					<Tweet time={tweet.time} pubkey={tweet.pubkey} message={tweet.message}/>
+					<Tweet time={tweet.time} pubkey={tweet.pubkey} message={tweet.message} />
 				{/each}
 			</div>
 		</div>
-		<p></p>
+		<p />
 	</div>
 </section>
