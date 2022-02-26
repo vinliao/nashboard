@@ -4,6 +4,7 @@
 	import Relay from '$lib/Relay.svelte';
 	import Dots from '$lib/Dots.svelte';
 	import Tweet from '$lib/Tweet.svelte';
+	import Kind from '$lib/Kind.svelte';
 
 	import { onMount } from 'svelte';
 	import _ from 'underscore';
@@ -22,7 +23,10 @@
 	let eventCount1h = 0;
 	let networkActivity = Array(24).fill(0); // array index is hour
 
+	let kind0 = 0;
 	let kind1 = 0;
+	let kind2 = 0;
+	let kind3 = 0;
 	let kind4 = 0;
 	let kindOther = 0;
 
@@ -73,8 +77,11 @@
 				if (event.created_at > unixTimeMinus1h) eventCount1h++;
 
 				// count kinds
-				if (event.kind == '1') kind1++;
-				else if (event.kind == '4') kind4++;
+				if (event.kind == '0') kind0++; // metadata
+				else if (event.kind == '1') kind1++; // tweet
+				else if (event.kind == '2') kind2++; // relay share
+				else if (event.kind == '3') kind3++; // contact list
+				else if (event.kind == '4') kind4++; // private messages
 				else kindOther++;
 
 				// count peak event
@@ -104,6 +111,7 @@
 	<div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-2">
 		<div class="sm:w-1/2 space-y-2 sm:space-y-4">
 			<Count {eventCount1h} {eventCount24h} />
+			<Kind {kind0} {kind1} {kind2} {kind3} {kind4} {kindOther}/>
 			<Activity {networkActivity} />
 			<Relay {relays} {relayActivity} />
 		</div>
