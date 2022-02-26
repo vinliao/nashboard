@@ -77,11 +77,16 @@
 				if (event.created_at > unixTimeMinus1h) eventCount1h++;
 
 				// count kinds
-				if (event.kind == '0') kind0++; // metadata
-				else if (event.kind == '1') kind1++; // tweet
-				else if (event.kind == '2') kind2++; // relay share
-				else if (event.kind == '3') kind3++; // contact list
-				else if (event.kind == '4') kind4++; // private messages
+				if (event.kind == '0') kind0++;
+				// metadata
+				else if (event.kind == '1') kind1++;
+				// tweet
+				else if (event.kind == '2') kind2++;
+				// relay share
+				else if (event.kind == '3') kind3++;
+				// contact list
+				else if (event.kind == '4') kind4++;
+				// private messages
 				else kindOther++;
 
 				// count peak event
@@ -108,10 +113,10 @@
 </script>
 
 <section class="bg-gradient-to-r from-pink-100 to-orange-200">
-	<div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-2">
+	<div class="p-2 max-w-3xl mx-auto sm:flex">
 		<div class="sm:w-1/2 space-y-2 sm:space-y-4">
 			<Count {eventCount1h} {eventCount24h} />
-			<Kind {kind0} {kind1} {kind2} {kind3} {kind4} {kindOther}/>
+			<Kind {kind0} {kind1} {kind2} {kind3} {kind4} {kindOther} />
 			<Activity {networkActivity} />
 			<Relay {relays} {relayActivity} />
 		</div>
@@ -121,7 +126,7 @@
 		</div>
 
 		<div class="rounded-md shadow p-3 bg-white sm:w-1/2">
-			<span class="block text-center pb-3 text-xs text-neutral-400"
+			<span class="block text-center pb-3 text-sm text-neutral-400 font-mono"
 				>NOSTR NETWORK'S LATEST EVENTS</span
 			>
 			<div class="flex flex-col">

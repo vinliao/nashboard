@@ -8,7 +8,7 @@
 </script>
 
 <div class="rounded-md shadow p-3 bg-white">
-	<span class="block text-center pb-3 text-xs text-neutral-400">EVENT TYPES (24H)</span>
+	<span class="block text-center pb-3 text-sm text-neutral-400 font-mono">EVENT TYPES (24H)</span>
 	<div class="flex flex-col">
 		<div class="flex items-baseline space-x-2">
 			<span class="flex-1 text-right">{kind1}</span>
