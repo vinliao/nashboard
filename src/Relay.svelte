@@ -14,7 +14,7 @@
 				<span class="shrink text-neutral-400">{relayActivity[i]}</span>
 			</div>
 		{/each}
-		<a href="https://github.com/vinliao/relayed" class="p-2 text-center block text-orange-700 underline"
+		<a href="https://github.com/vinliao/nashboard" class="p-2 text-center block text-orange-700 underline"
 			>Add your relay?</a
 		>
 	</div>
