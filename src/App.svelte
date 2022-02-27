@@ -115,7 +115,7 @@
 
       // todo: bug: still display duplicate tweets at time
       tweets.push(tweet);
-      const uniqueTweets = _.uniq(tweets);
+      const uniqueTweets = _.uniq(tweets, tweet => tweet.time);
       const sortedTweets = _.sortBy(uniqueTweets, "time");
       tweets = sortedTweets.reverse().slice(0, 20);
     };
