@@ -10,7 +10,7 @@
   import Pie from "svelte-chartjs/src/Pie.svelte";
 
   // initial dummy event object
-  let events = [];
+  let tweets = [];
 
   let eventCount24h = 0;
   let eventCount1h = 0;
@@ -112,12 +112,12 @@
         id: event.id,
         pubkey: event.pubkey,
       };
-      
+
       // todo: bug: still display duplicate tweets at time
-      events.push(tweet);
-      const uniqueEvents = _.uniq(events);
-      const sortedEvents = _.sortBy(uniqueEvents, "time");
-      events = sortedEvents.reverse().slice(0, 20);
+      tweets.push(tweet);
+      const uniqueTweets = _.uniq(tweets);
+      const sortedTweets = _.sortBy(uniqueTweets, "time");
+      tweets = sortedTweets.reverse().slice(0, 20);
     };
   });
 </script>
@@ -144,7 +144,7 @@
         >NOSTR NETWORK'S LATEST EVENTS</span
       >
       <div class="flex flex-col">
-        {#each events as tweet}
+        {#each tweets as tweet}
           <Tweet
             time={tweet.time}
             pubkey={tweet.pubkey}
