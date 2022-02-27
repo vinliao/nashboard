@@ -10,14 +10,7 @@
   import Pie from "svelte-chartjs/src/Pie.svelte";
 
   // initial dummy event object
-  let events = [
-    {
-      message:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum suscipit dolores eos sequi. Repudiandae doloremque qui quo deserunt quidem, eum incidunt consequuntur numquam nostrum!",
-      time: 1,
-      pubkey: "0000000000",
-    },
-  ];
+  let events = [];
 
   let eventCount24h = 0;
   let eventCount1h = 0;
@@ -119,6 +112,8 @@
         id: event.id,
         pubkey: event.pubkey,
       };
+      
+      // todo: bug: still display duplicate tweets at time
       events.push(tweet);
       const uniqueEvents = _.uniq(events);
       const sortedEvents = _.sortBy(uniqueEvents, "time");
@@ -128,7 +123,7 @@
 </script>
 
 <section class="bg-gradient-to-r from-pink-100 to-orange-200">
-  <div class="p-2 max-w-3xl mx-auto sm:flex">
+  <div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-4 space-y-2 sm:space-y-0">
     <div class="sm:w-1/2 space-y-2 sm:space-y-4">
       <Count {eventCount1h} {eventCount24h} />
 
@@ -142,10 +137,6 @@
 
       <Activity {networkActivity} />
       <Relay {relays} {relayActivity} />
-    </div>
-
-    <div class="sm:invisible">
-      <Dots />
     </div>
 
     <div class="rounded-md shadow p-3 bg-white sm:w-1/2">
