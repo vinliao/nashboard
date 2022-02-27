@@ -16,6 +16,8 @@
   let eventCount1h = 0;
   let networkActivity = Array(24).fill(0); // array index is hour
 
+  // index of array represents "kind"
+  // last index is kind "others"
   let kindArr = [0, 0, 0, 0, 0, 0];
 
   let pieData = {
@@ -90,11 +92,11 @@
       if (event.created_at > unixTimeMinus1h) eventCount1h++;
 
       // count kinds
-      if (event.kind == "0") kindArr[0]++; // metadata
-      else if (event.kind == "1") kindArr[1]++; // tweet
-      else if (event.kind == "2") kindArr[2]++; // relay share
-      else if (event.kind == "3") kindArr[3]++; // contact list
-      else if (event.kind == "4") kindArr[4]++; // private messages
+      if (event.kind == "0") kindArr[0]++;
+      else if (event.kind == "1") kindArr[1]++;
+      else if (event.kind == "2") kindArr[2]++;
+      else if (event.kind == "3") kindArr[3]++;
+      else if (event.kind == "4") kindArr[4]++;
       else kindArr[5]++;
       pieData = pieData; // super heavy operation...
 
@@ -114,7 +116,7 @@
       };
 
       tweets.push(tweet);
-      const uniqueTweets = _.uniq(tweets, tweet => tweet.time);
+      const uniqueTweets = _.uniq(tweets, (tweet) => tweet.time);
       const sortedTweets = _.sortBy(uniqueTweets, "time");
       tweets = sortedTweets.reverse().slice(0, 20);
     };
@@ -122,7 +124,9 @@
 </script>
 
 <section class="bg-gradient-to-r from-pink-100 to-orange-200">
-  <div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-4 space-y-2 sm:space-y-0">
+  <div
+    class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-4 space-y-2 sm:space-y-0"
+  >
     <div class="sm:w-1/2 space-y-2 sm:space-y-4">
       <Count {eventCount1h} {eventCount24h} />
 
@@ -144,14 +148,11 @@
       >
       <div class="flex flex-col">
         {#each tweets as tweet}
-          <a href="https://branle.netlify.app/event/{tweet.id}">
-            <Tweet
-              time={tweet.time}
-              pubkey={tweet.pubkey}
-              message={tweet.message}
-            />
-
-          </a>
+          <Tweet
+            time={tweet.time}
+            pubkey={tweet.pubkey}
+            message={tweet.message}
+          />
         {/each}
       </div>
     </div>
