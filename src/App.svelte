@@ -113,7 +113,6 @@
         pubkey: event.pubkey,
       };
 
-      // todo: bug: still display duplicate tweets at time
       tweets.push(tweet);
       const uniqueTweets = _.uniq(tweets, tweet => tweet.time);
       const sortedTweets = _.sortBy(uniqueTweets, "time");
@@ -145,11 +144,14 @@
       >
       <div class="flex flex-col">
         {#each tweets as tweet}
-          <Tweet
-            time={tweet.time}
-            pubkey={tweet.pubkey}
-            message={tweet.message}
-          />
+          <a href="https://branle.netlify.app/event/{tweet.id}">
+            <Tweet
+              time={tweet.time}
+              pubkey={tweet.pubkey}
+              message={tweet.message}
+            />
+
+          </a>
         {/each}
       </div>
     </div>
