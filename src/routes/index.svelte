@@ -14,13 +14,22 @@
 
 <script>
   export let data = {};
+  import Activity from "$lib/Activity.svelte";
+  import Relay from "$lib/Relay.svelte";
   import Tweet from "$lib/Tweet.svelte";
 
   const tweets = data.events;
 
-  console.log(tweets);
+  console.log(data);
 </script>
 
+<Relay relayData={data.relays} />
+<Activity networkActivity={data.utc} />
+
 {#each tweets as tweet}
-  <Tweet time={tweet.created_at} message={tweet.content} pubkey={tweet.pubkey}/>
+  <Tweet
+    time={tweet.created_at}
+    message={tweet.content}
+    pubkey={tweet.pubkey}
+  />
 {/each}
