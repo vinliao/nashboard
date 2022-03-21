@@ -15,6 +15,7 @@
 <script>
   export let data = {};
   import Activity from "$lib/Activity.svelte";
+import Built from "$lib/Built.svelte";
   import Count from "$lib/Count.svelte";
   import Pie from "$lib/Pie.svelte";
   import Relay from "$lib/Relay.svelte";
@@ -36,6 +37,8 @@
 
     <Activity networkActivity={data.utc} />
     <Relay relayData={data.relays} />
+
+    <Built/>
   </div>
 
   <div class="rounded-md shadow p-3 bg-white sm:w-1/2">
