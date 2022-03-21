@@ -15,7 +15,7 @@
 <script>
   export let data = {};
   import Activity from "$lib/Activity.svelte";
-import Built from "$lib/Built.svelte";
+  import Built from "$lib/Built.svelte";
   import Count from "$lib/Count.svelte";
   import Pie from "$lib/Pie.svelte";
   import Relay from "$lib/Relay.svelte";
@@ -31,14 +31,10 @@ import Built from "$lib/Built.svelte";
     <Count count1h={data.count1h} count24h={data.count24h} />
 
     <!-- pie kind component -->
-    <div class="rounded-md shadow p-3 bg-white">
-      <Pie kinds={data.kinds} />
-    </div>
-
+    <Pie kinds={data.kinds} />
     <Activity networkActivity={data.utc} />
     <Relay relayData={data.relays} />
-
-    <Built/>
+    <Built />
   </div>
 
   <div class="rounded-md shadow p-3 bg-white sm:w-1/2">
