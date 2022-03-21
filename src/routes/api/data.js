@@ -1,5 +1,5 @@
+import _ from 'underscore';
 import WebSocket from 'ws';
-const ws = new WebSocket('wss://nostr-pub.wellorder.net');
 
 const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinus24h = unixTime - 60 * 60 * 24;
@@ -23,11 +23,7 @@ const relays = [
 export async function get() {
   let events = [];
 
-  // index of array represents "kind"
-  // last index is kind "others"
-  let kindArr = [0, 0, 0, 0, 0, 0];
-
-  relays.forEach(relay => {
+  relays.forEach((relay, relayIndex) => {
     const ws = new WebSocket(relay);
 
     ws.on('open', function open() {
@@ -40,17 +36,9 @@ export async function get() {
 
         // ["EVENT", <sub name>, event]
         const event = payload[2];
+        event.relay = relays[relayIndex];
 
         events.push(event);
-
-        // count kinds
-        // also use filter() to do this
-        if (event.kind == "0") kindArr[0]++;
-        else if (event.kind == "1") kindArr[1]++;
-        else if (event.kind == "2") kindArr[2]++;
-        else if (event.kind == "3") kindArr[3]++;
-        else if (event.kind == "4") kindArr[4]++;
-        else kindArr[5]++;
       }
     });
 
@@ -61,6 +49,16 @@ export async function get() {
 
   const latestEvents = events.reverse().slice(0, 20);
   const events1h = events.filter(event => event.created_at > unixTimeMinus1h)
+  const kindsList = _.countBy(events, "kind");
+  const relayList = _.countBy(events, "relay");
 
-  return { body: { hello: 'world', count24h: events.length, count1h: events1h.length, kinds: kindArr, events: latestEvents } }
+  // count peak event in utc
+  const eventsUTC = events.map(event => {
+    const eventDate = new Date(event.created_at * 1000);
+    return eventDate.getUTCHours()
+  })
+
+  const UTCList = _.countBy(eventsUTC);
+
+  return { body: { utc: UTCList, kinds: kindsList, relays: relayList, count24h: events.length, count1h: events1h.length, events: latestEvents } }
 }
