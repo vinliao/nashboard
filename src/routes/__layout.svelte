@@ -1,5 +1,7 @@
 <script>
-	import '../app.css';
+  import "../app.css";
 </script>
 
-<slot />
+<div class="bg-gradient-to-tr from-pink-100 to-orange-200">
+  <slot />
+</div>
