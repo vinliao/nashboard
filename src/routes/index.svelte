@@ -6,20 +6,21 @@
     return {
       status: response.status,
       props: {
-        data: data
+        data: data,
       },
     };
   }
 </script>
 
 <script>
-  export let data;
+  export let data = {};
+  import Tweet from "$lib/Tweet.svelte";
+
+  const tweets = data.events;
+
+  console.log(tweets);
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
-
-<p class="underline">hello from branch</p>
-<pre>{JSON.stringify(data)}</pre>
+{#each tweets as tweet}
+  <Tweet time={tweet.created_at} message={tweet.content} pubkey={tweet.pubkey}/>
+{/each}
