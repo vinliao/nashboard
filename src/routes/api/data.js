@@ -47,7 +47,9 @@ export async function get() {
   // wait the events to collect first
   await new Promise(r => setTimeout(r, 2000));
 
-  const latestEvents = events.reverse().slice(0, 20);
+  const uniqueEvents = _.uniq(events, (event) => event.created_at);
+  const sortedEvents = _.sortBy(uniqueEvents, "created_at");
+  const latestEvents = sortedEvents.reverse().slice(0, 20);
   const events1h = events.filter(event => event.created_at > unixTimeMinus1h)
   const kindsList = _.countBy(events, "kind");
   const relayList = _.countBy(events, "relay");
