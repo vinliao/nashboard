@@ -22,8 +22,6 @@
   import Tweet from "$lib/Tweet.svelte";
 
   const tweets = data.events;
-
-  console.log(data);
 </script>
 
 <div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-4 space-y-2 sm:space-y-0">
