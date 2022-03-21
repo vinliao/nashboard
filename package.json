@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"svelte-chartjs": "^1.1.4",
 		"timeago.js": "^4.0.2",
 		"underscore": "^1.13.2",
 		"ws": "^8.5.0"

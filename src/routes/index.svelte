@@ -15,6 +15,8 @@
 <script>
   export let data = {};
   import Activity from "$lib/Activity.svelte";
+  import Count from "$lib/Count.svelte";
+import Pie from "$lib/Pie.svelte";
   import Relay from "$lib/Relay.svelte";
   import Tweet from "$lib/Tweet.svelte";
 
@@ -23,6 +25,8 @@
   console.log(data);
 </script>
 
+<Count count1h={data.count1h} count24h={data.count24h} />
+<Pie kinds={data.kinds} />
 <Relay relayData={data.relays} />
 <Activity networkActivity={data.utc} />
 
