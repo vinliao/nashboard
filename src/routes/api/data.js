@@ -18,6 +18,9 @@ const relays = [
   "wss://nostr-verified.wellorder.net",
   "wss://nostr.drss.io",
   "wss://nostr.unknown.place",
+  "wss://relay.damus.io",
+  "wss://nostr.openchain.fr",
+  "wss://nostr.delo.software"
 ];
 
 export async function get() {
@@ -25,6 +28,11 @@ export async function get() {
 
   relays.forEach((relay, relayIndex) => {
     const ws = new WebSocket(relay);
+
+    ws.on('error', (error) => {
+      // do nothing
+      console.log(error);
+    });
 
     ws.on('open', function open() {
       ws.send(JSON.stringify(["REQ", "foobar", { since: unixTimeMinus24h }]));
@@ -35,10 +43,13 @@ export async function get() {
         const payload = JSON.parse(data.toString());
 
         // ["EVENT", <sub name>, event]
-        const event = payload[2];
-        event.relay = relays[relayIndex];
+        let event = payload[2];
 
-        events.push(event);
+        // sometimes event returns undefined...
+        if (event) {
+          event.relay = relays[relayIndex];
+          events.push(event);
+        }
       }
     });
 
@@ -50,17 +61,17 @@ export async function get() {
   const uniqueEvents = _.uniq(events, (event) => event.created_at);
   const sortedEvents = _.sortBy(uniqueEvents, "created_at");
   const latestEvents = sortedEvents.reverse().slice(0, 20);
-  const events1h = events.filter(event => event.created_at > unixTimeMinus1h)
+  const events1h = events.filter(event => event.created_at > unixTimeMinus1h);
   const kindsList = _.countBy(events, "kind");
   const relayList = _.countBy(events, "relay");
 
   // count peak event in utc
   const eventsUTC = events.map(event => {
     const eventDate = new Date(event.created_at * 1000);
-    return eventDate.getUTCHours()
-  })
+    return eventDate.getUTCHours();
+  });
 
   const UTCList = _.countBy(eventsUTC);
 
-  return { body: { utc: UTCList, kinds: kindsList, relays: relayList, count24h: events.length, count1h: events1h.length, events: latestEvents } }
+  return { body: { utc: UTCList, kinds: kindsList, relays: relayList, count24h: events.length, count1h: events1h.length, events: latestEvents } };
 }
