@@ -31,7 +31,7 @@ export async function get() {
 
     ws.on('error', (error) => {
       // do nothing
-      console.log(error);
+      // console.log(error);
     });
 
     ws.on('open', function open() {
@@ -47,8 +47,10 @@ export async function get() {
 
         // sometimes event returns undefined...
         if (event) {
-          event.relay = relays[relayIndex];
-          events.push(event);
+          if (event.created_at < Date.now() / 1000) {
+            event.relay = relays[relayIndex];
+            events.push(event);
+          }
         }
       }
     });
@@ -56,7 +58,7 @@ export async function get() {
   });
 
   // wait the events to collect first
-  await new Promise(r => setTimeout(r, 2000));
+  await new Promise(r => setTimeout(r, 2200));
 
   const uniqueEvents = _.uniq(events, (event) => event.created_at);
   const sortedEvents = _.sortBy(uniqueEvents, "created_at");
