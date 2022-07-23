@@ -48,7 +48,7 @@ export async function get() {
 
         // sometimes event returns undefined...
         if (event) {
-          if (event.created_at < Date.now() / 1000) {
+          if (event.created_at < Date.now() / 1000 && event.content != "") {
             event.relay = relays[relayIndex];
             events.push(event);
           }
