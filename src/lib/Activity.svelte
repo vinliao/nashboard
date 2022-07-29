@@ -1,45 +1,86 @@
 <script>
   // this component can be refactored
   export let networkActivity;
+  import Line from "svelte-chartjs/src/Line.svelte";
 
-  let timeArrFirst = [];
-  let timeArrSecond = [];
+  console.log(networkActivity)
+
+  let timeArrAM = {};
   for (let i = 0; i < 12; i++) {
-    const stringUtc = "000" + i;
-    const hour = stringUtc.slice(-2);
-    timeArrFirst.push(hour + ":00—");
+    const timeString = i.toString();
+    const timeStringPlusOne = (i + 1).toString();
+    if (networkActivity[timeString]) {
+      timeArrAM[timeStringPlusOne] = networkActivity[timeString];
+    } else timeArrAM[timeStringPlusOne] = 0;
   }
+
+  let timeArrPM = {};
   for (let i = 12; i < 24; i++) {
-    const stringUtc = "000" + i;
-    const hour = stringUtc.slice(-2);
-    timeArrSecond.push(hour + ":00—");
+    const timeStringOriginal = i.toString();
+    const timeString = (i - 12).toString();
+    const timeStringPlusOne = (i - 12 + 1).toString();
+    if (networkActivity[timeString]) {
+      timeArrPM[timeStringPlusOne] = networkActivity[timeStringOriginal];
+    } else timeArrPM[timeStringPlusOne] = 0;
   }
+
+  // uncomment in case it's useful
+  // replace timeArrAM with dummyData
+  // replace timeArrPM with dummyData2
+  // const dummyData = {
+  //   "1": 10,
+  //   "2": 6,
+  //   "3": 5,
+  //   "4": 12,
+  //   "5": 3,
+  //   "6": 5,
+  //   "7": 7,
+  //   "8": 9,
+  //   "9": 1,
+  //   "10": 2,
+  //   "11": 1,
+  //   "12": 3,
+  // };
+
+  // const dummyData2 = {
+  //   "1": 7,
+  //   "2": 9,
+  //   "3": 5,
+  //   "4": 10,
+  //   "5": 3,
+  //   "6": 8,
+  //   "7": 5,
+  //   "8": 9,
+  //   "9": 5,
+  //   "10": 7,
+  //   "11": 16,
+  //   "12": 16,
+  // };
+
+  let data = {
+    datasets: [
+      {
+        label: "AM",
+        data: timeArrAM,
+        borderColor: "#fed7aa",
+        backgroundColor: "#ffedd5",
+        lineTension: 0.5,
+      },
+      {
+        label: "PM",
+        data: timeArrPM,
+        borderColor: "#a5f3fc",
+        backgroundColor: "#cffafe",
+        lineTension: 0.5,
+      },
+    ],
+  };
 </script>
 
-<div class="rounded-md shadow p-3 bg-white">
-  <span class="block text-center pb-3 text-sm text-neutral-400 font-mono"
-    >NETWORK ACTIVITY (24H, UTC)</span
+<div class="p-3 border-2 border-orange-200">
+  <span class="block text-center pb-3 text-sm text-orange-400 font-mono"
+    >RELAY ACTIVITY (24H, UTC)</span
   >
-  <div class="flex px-4">
-    <div class="flex flex-col flex-1">
-      {#each timeArrFirst as time, i}
-        <div class="flex p-2">
-          <span class="text-neutral-400">{time}</span>
-          <span class="text-neutral-500 self-start"
-            >{networkActivity[i] || 0} evt</span
-          >
-        </div>
-      {/each}
-    </div>
-    <div class="flex flex-col flex-1">
-      {#each timeArrSecond as time, i}
-        <div class="flex p-2">
-          <span class="text-neutral-400">{time}</span>
-          <span class="text-neutral-500"
-            >{networkActivity[i + 12] || 0} evt</span
-          >
-        </div>
-      {/each}
-    </div>
-  </div>
+
+  <Line {data} />
 </div>
