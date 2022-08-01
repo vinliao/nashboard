@@ -5,35 +5,25 @@
   for (let i = 0; i < kindArr.length; i++) {
     kindArr[i] = kinds[i] || 0;
   }
+  const newKindArr = [kindArr[1], kindArr[4]];
 
   let data = {
-    labels: [
-      "metadata",
-      "tweet",
-      "relay share",
-      "contact list",
-      "encrypted msg",
-      "other",
-    ],
+    labels: ["post", "DM"],
     datasets: [
       {
         label: "Event types",
-        data: kindArr,
+        data: newKindArr,
         backgroundColor: [
-          "hsl(326, 85%, 90%)",
-          "hsl(267, 85%, 90%)",
-          "hsl(207, 85%, 90%)",
-          "hsl(147, 85%, 90%)",
-          "hsl(87, 85%, 90%)",
-          "hsl(27, 85%, 90%)",
+          "#FED7AA",
+          "#A5F3FC",
         ],
       },
     ],
   };
 </script>
 
-<div class="rounded-md p-3 bg-white">
-  <span class="block text-center pb-3 text-sm text-neutral-400 font-mono"
+<div class="p-3 border-2 border-orange-200 bg-white">
+  <span class="block text-center pb-3 text-sm text-orange-400 font-mono"
     >EVENT TYPES (24H)</span
   >
   <Pie {data} />

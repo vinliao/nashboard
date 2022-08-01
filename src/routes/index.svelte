@@ -24,18 +24,20 @@
   const tweets = data.events;
 </script>
 
-<div class="p-2 max-w-3xl mx-auto sm:flex sm:space-x-4 space-y-2 sm:space-y-0">
-  <div class="sm:w-1/2 space-y-2 sm:space-y-4">
+<div class="p-2 space-y-2 max-w-md mx-auto lg:max-w-none lg:flex">
+  <div class="space-y-2 lg:hidden">
     <Title />
     <Count count1h={data.count1h} count24h={data.count24h} />
     <Unique count1h={data.count1h} count24h={data.count24h} />
 
-    <!-- pie kind component -->
-    <!-- <Pie kinds={data.kinds} /> -->
     <Activity networkActivity={data.utc} />
+    <Pie kinds={data.kinds} />
   </div>
 
-  <div class="p-3 sm:w-1/2 border-2 border-orange-200">
+  <!-- this is where to make the left and right side -->
+  <p class="hidden lg:flex">hello world</p>
+
+  <div class="p-2 border-2 border-orange-200 bg-white lg:w-1/2 xl:w-2/5 mx-auto">
     <span class="block text-center pb-3 text-sm font-mono text-orange-400"
       >LATEST POSTS</span
     >

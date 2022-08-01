@@ -3,8 +3,6 @@
   export let networkActivity;
   import Line from "svelte-chartjs/src/Line.svelte";
 
-  console.log(networkActivity)
-
   let timeArrAM = {};
   for (let i = 0; i < 12; i++) {
     const timeString = i.toString();
@@ -77,7 +75,7 @@
   };
 </script>
 
-<div class="p-3 border-2 border-orange-200">
+<div class="p-3 border-2 border-orange-200 bg-white bg-white">
   <span class="block text-center pb-3 text-sm text-orange-400 font-mono"
     >RELAY ACTIVITY (24H, UTC)</span
   >

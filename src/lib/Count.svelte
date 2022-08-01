@@ -1,20 +1,13 @@
 <script>
-	export let count1h;
-	export let count24h;
+  export let count1h;
+  export let count24h;
 </script>
 
-<div class="p-3 border-2 border-orange-200">
-	<span class="block text-center pb-3 text-sm text-orange-400 font-mono"
-		>EVENT COUNT</span
-	>
-	<div class="flex">
-		<div class="flex-1 text-center">
-			<span class="text-2xl">724</span>
-			<span class="text-neutral-400">last 24h</span>
-		</div>
-		<div class="flex-1 text-center">
-			<span class="text-2xl">53910</span>
-			<span class="text-neutral-400">last 7d</span>
-		</div>
-	</div>
+<div class="p-5 border-2 border-orange-200 bg-white">
+  <span class="block text-center pb-1 text-sm text-orange-400 font-mono"
+    >EVENT COUNT 24H</span
+  >
+  <div class="text-center">
+    <span class="text-4xl">{count24h}</span>
+  </div>
 </div>
