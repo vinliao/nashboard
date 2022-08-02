@@ -4,7 +4,7 @@
 </script>
 
 <div class="p-5 border-2 border-orange-200 bg-white">
-  <span class="block text-center pb-1 text-lg text-orange-400 font-anton"
+  <span class="block text-center pb-1 text-lg text-orange-500 font-anton"
     >{label}</span
   >
   <div class="text-center">

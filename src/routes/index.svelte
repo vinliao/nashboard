@@ -36,7 +36,7 @@
   </div>
 
   <div class="p-2 border-2 border-orange-200 bg-white">
-    <span class="block text-center pb-3 text-lg font-anton text-orange-400"
+    <span class="block text-center pb-3 text-lg font-anton text-orange-500"
       >LATEST POSTS</span
     >
     <div class="flex flex-col">
@@ -54,7 +54,7 @@
 <div class="hidden xl:flex xl:flex-col mx-auto space-x-2 max-w-6xl">
   <Title />
   <div class="flex space-x-1">
-    <div class="space-y-1 flex-none">
+    <div class="space-y-1 flex-auto">
       <SingleNumber number={data.count1h} label={"EVENT COUNT 1H"} />
       <SingleNumber number={data.count24h} label={"EVENT COUNT 24H"} />
 
@@ -63,7 +63,7 @@
       <SingleNumber number={318} label={"ACTIVE USERS 24H"} />
     </div>
     <div class="p-2 border-2 border-orange-200 bg-white w-1/2">
-      <span class="block text-center pb-3 text-lg font-anton text-orange-400"
+      <span class="block text-center pb-3 text-lg font-anton text-orange-500"
         >LATEST POSTS</span
       >
       <div class="flex flex-col">
