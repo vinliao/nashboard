@@ -1,4 +1,2 @@
-# Nashboard: a Nostr network dashboard
-Firstly, I want to say thank you to relay operators. Without them, the Nostr network wouldn't run and this site wouldn't exist.
-
-This small site displays basic statistics about the Nostr network - the events, the relays, the timestamps. You can think of it as the dashboard of the entire network. Visit: [nashboard.netlify.app](https://nashboard.netlify.app/).
+# Nashboard Minds
+Demo: [https://tranquil-unicorn-847439.netlify.app/](https://tranquil-unicorn-847439.netlify.app/)
