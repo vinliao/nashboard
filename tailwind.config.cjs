@@ -1,8 +1,14 @@
+const defaultConfig = require('tailwindcss/defaultTheme')
+
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				anton: ["Anton", ...defaultConfig.fontFamily.sans],
+			}
+		}
 	},
 
 	plugins: []

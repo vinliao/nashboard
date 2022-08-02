@@ -23,7 +23,7 @@
 </script>
 
 <div class="p-3 border-2 border-orange-200 bg-white">
-  <span class="block text-center pb-3 text-sm text-orange-400 font-mono"
+  <span class="block text-center pb-3 text-lg text-orange-400 font-anton"
     >EVENT TYPES (24H)</span
   >
   <Pie {data} />
