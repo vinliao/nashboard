@@ -8,6 +8,6 @@
     >{label}</span
   >
   <div class="text-center">
-    <span class="text-4xl">{number}</span>
+    <span class="text-4xl font-bold text-neutral-700">{number}</span>
   </div>
 </div>

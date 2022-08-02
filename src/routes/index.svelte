@@ -22,7 +22,41 @@
   import SingleNumber from "$lib/SingleNumber.svelte";
 
   const tweets = data.events;
+
+  let dummyMessage = true;
+  function toggleDummyMessage() {
+    dummyMessage = false;
+  }
 </script>
+
+{#if dummyMessage}
+  <div class="block bg-cyan-700 p-2 text-white">
+    <p class="pb-2">
+      Event count, latest post, and relay activity are real data from Minds'
+      relay. The rest is dummy data. Dummy data will be replaced with real ones
+      when the Minds relay is crowded enough.
+    </p>
+    <button
+      class="focus:outline-none focus:ring-0"
+      on:click={toggleDummyMessage}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </div>
+{/if}
 
 <div class="p-2 space-y-1 max-w-md mx-auto xl:hidden">
   <div class="space-y-1">
@@ -60,7 +94,7 @@
 
       <!-- dummy data -->
       <SingleNumber number={103} label={"ACTIVE USERS 1H"} />
-      <SingleNumber number={318} label={"ACTIVE USERS 24H"} />
+      <SingleNumber number={9999} label={"ACTIVE USERS 24H"} />
     </div>
     <div class="p-2 border-2 border-orange-200 bg-white w-1/2">
       <span class="block text-center pb-3 text-lg font-anton text-orange-500"
