@@ -6,7 +6,6 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				anton: ["Anton", ...defaultConfig.fontFamily.sans],
 				sans: ["Inter var", ...defaultConfig.fontFamily.sans],
 			}
 		}
