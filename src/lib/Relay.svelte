@@ -4,7 +4,7 @@
 </script>
 
 <div class="rounded-md shadow p-3 bg-white">
-  <span class="block text-center pb-3 text-lg text-neutral-400 font-anton"
+  <span class="block text-center pb-3 text-lg text-neutral-400 "
     >EVENTS RECEIVED BY RELAY LAST 24H</span
   >
   <div class="flex flex-col">

@@ -30,8 +30,8 @@
 </script>
 
 {#if dummyMessage}
-  <div class="block bg-cyan-700 p-2 text-white">
-    <p class="pb-2">
+  <div class="bg-cyan-700 p-2 text-cyan-50 font-bold flex items-start justify-between">
+    <p class="">
       Event count, latest post, and relay activity are real data from Minds'
       relay. The rest is dummy data. Dummy data will be replaced with real ones
       when the Minds relay is crowded enough.
@@ -70,7 +70,7 @@
   </div>
 
   <div class="p-2 border-2 border-orange-200 bg-white">
-    <span class="block text-center pb-3 text-lg font-anton text-orange-500"
+    <span class="block text-center pb-3 text-lg  text-orange-500 font-bold"
       >LATEST POSTS</span
     >
     <div class="flex flex-col">
@@ -97,7 +97,7 @@
       <SingleNumber number={9999} label={"ACTIVE USERS 24H"} />
     </div>
     <div class="p-2 border-2 border-orange-200 bg-white w-1/2">
-      <span class="block text-center pb-3 text-lg font-anton text-orange-500"
+      <span class="block text-center pb-3 text-lg  text-orange-500 font-bold"
         >LATEST POSTS</span
       >
       <div class="flex flex-col">
@@ -113,7 +113,7 @@
     <div class="space-y-1 flex-auto">
       <Activity networkActivity={data.utc} />
       <Frequent />
-      <Pie kinds={data.kinds} />
+      <Pie kinds={data.kinds}/>
     </div>
   </div>
 </div>
