@@ -25,35 +25,35 @@
   // uncomment in case it's useful
   // replace timeArrAM with dummyData
   // replace timeArrPM with dummyData2
-  // const dummyData = {
-  //   "1": 10,
-  //   "2": 6,
-  //   "3": 5,
-  //   "4": 12,
-  //   "5": 3,
-  //   "6": 5,
-  //   "7": 7,
-  //   "8": 9,
-  //   "9": 1,
-  //   "10": 2,
-  //   "11": 1,
-  //   "12": 3,
-  // };
+  timeArrAM = {
+    "1": 10,
+    "2": 6,
+    "3": 5,
+    "4": 12,
+    "5": 3,
+    "6": 5,
+    "7": 7,
+    "8": 9,
+    "9": 1,
+    "10": 2,
+    "11": 1,
+    "12": 3,
+  };
 
-  // const dummyData2 = {
-  //   "1": 7,
-  //   "2": 9,
-  //   "3": 5,
-  //   "4": 10,
-  //   "5": 3,
-  //   "6": 8,
-  //   "7": 5,
-  //   "8": 9,
-  //   "9": 5,
-  //   "10": 7,
-  //   "11": 16,
-  //   "12": 16,
-  // };
+  timeArrPM = {
+    "1": 7,
+    "2": 9,
+    "3": 5,
+    "4": 10,
+    "5": 3,
+    "6": 8,
+    "7": 5,
+    "8": 9,
+    "9": 5,
+    "10": 7,
+    "11": 16,
+    "12": 16,
+  };
 
   let data = {
     datasets: [
@@ -76,8 +76,7 @@
 </script>
 
 <div class="p-3 border-2 border-orange-200 bg-white">
-  <span
-    class="block text-center pb-3 text-lg text-orange-500 font-bold"
+  <span class="block text-center pb-3 text-lg text-orange-500 font-bold"
     >RELAY ACTIVITY (24H, UTC)</span
   >
 

@@ -8,7 +8,7 @@
   const newKindArr = [kindArr[1], kindArr[4]];
 
   let data = {
-    labels: ["@ottoman", "@minds", "@superfan1", "@somename", "@david"],
+    labels: ["@ottman", "@minds", "@superfan1", "@somename", "@david"],
     datasets: [
       {
         label: "Total post",
