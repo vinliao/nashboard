@@ -1,27 +1,45 @@
 <script>
   import Pie from "svelte-chartjs/src/Pie.svelte";
+
   export let kinds = {};
-  const kindArr = [0, 0, 0, 0, 0, 0];
-  for (let i = 0; i < kindArr.length; i++) {
-    kindArr[i] = kinds[i] || 0;
-  }
-  const newKindArr = [kindArr[1], kindArr[4]];
+  let kind1 = 0;
+  let kind4 = 0;
+  let kindOthers = 0;
+
+  const kindNumbers = Object.keys(kinds);
+  kindNumbers.forEach((key) => {
+    if (key == "1") kind1 = kinds[key];
+    else if (key == "4") kind4 = kinds[key];
+    else kindOthers = kindOthers + kinds[key];
+  });
 
   let data = {
-    labels: ["post", "DM"],
+    labels: ["kind 1", "kind 4", "others"],
     datasets: [
       {
         label: "Event types",
-        data: newKindArr,
-        backgroundColor: ["#FED7AA", "#A5F3FC"],
+        data: [kind1, kind4, kindOthers],
+        backgroundColor: ["#FED7AA", "#A5F3FC", "#d6d3d1"],
       },
     ],
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 16,
+          },
+        },
+      },
+    },
   };
 </script>
 
 <div class="p-3 border-2 border-orange-200 bg-white">
   <span class="block text-center pb-3 text-lg text-orange-500 font-bold "
-    >EVENT TYPES (24H)</span
+    >EVENT KINDS (24H)</span
   >
-  <Pie {data} />
+  <Pie {data} {options} />
 </div>
