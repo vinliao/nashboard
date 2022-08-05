@@ -31,6 +31,7 @@
           font: {
             size: 16,
           },
+          color: '#57534e'
         },
       },
     },
@@ -38,7 +39,7 @@
 </script>
 
 <div class="p-3 border-2 border-orange-200 bg-white">
-  <span class="block text-center pb-3 text-lg text-orange-500 font-bold "
+  <span class="block text-center mb-3 text-lg text-orange-500 font-bold tracking-tighter"
     >EVENT KINDS (24H)</span
   >
   <Pie {data} {options} />
