@@ -25,53 +25,88 @@
   // uncomment in case it's useful
   // replace timeArrAM with dummyData
   // replace timeArrPM with dummyData2
-  timeArrAM = {
-    "1": 10,
-    "2": 6,
-    "3": 5,
-    "4": 12,
-    "5": 3,
-    "6": 5,
-    "7": 7,
-    "8": 9,
-    "9": 1,
-    "10": 2,
-    "11": 1,
-    "12": 3,
-  };
+  // timeArrAM = {
+  //   "1": 10,
+  //   "2": 6,
+  //   "3": 5,
+  //   "4": 12,
+  //   "5": 3,
+  //   "6": 5,
+  //   "7": 7,
+  //   "8": 9,
+  //   "9": 1,
+  //   "10": 2,
+  //   "11": 1,
+  //   "12": 3,
+  // };
 
-  timeArrPM = {
-    "1": 7,
-    "2": 9,
-    "3": 5,
-    "4": 10,
-    "5": 3,
-    "6": 8,
-    "7": 5,
-    "8": 9,
-    "9": 5,
-    "10": 7,
-    "11": 16,
-    "12": 16,
-  };
+  // timeArrPM = {
+  //   "1": 7,
+  //   "2": 9,
+  //   "3": 5,
+  //   "4": 10,
+  //   "5": 3,
+  //   "6": 8,
+  //   "7": 5,
+  //   "8": 9,
+  //   "9": 5,
+  //   "10": 7,
+  //   "11": 16,
+  //   "12": 18,
+  // };
 
   let data = {
     datasets: [
       {
         label: "AM",
         data: timeArrAM,
-        borderColor: "#fed7aa",
-        backgroundColor: "#ffedd5",
+        borderColor: "#fbbf24",
+        backgroundColor: "#fff7ed",
         lineTension: 0.5,
       },
       {
         label: "PM",
         data: timeArrPM,
         borderColor: "#a5f3fc",
-        backgroundColor: "#cffafe",
-        lineTension: 0.5,
+        backgroundColor: "#ecfeff",
+        lineTension: 0.4,
       },
     ],
+  };
+
+  const options = {
+    aspectRatio: 1,
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 16,
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 16 }, color: "#57534e" },
+        display: true,
+        title: {
+          display: true,
+          text: "Hours",
+          font: { size: 16 },
+          color: "#a8a29e",
+        },
+      },
+      y: {
+        ticks: { font: { size: 16 }, color: "#57534e" },
+        display: true,
+        title: {
+          display: true,
+          text: "Event count",
+          font: { size: 16 },
+          color: "#a8a29e",
+        },
+      },
+    },
   };
 </script>
 
@@ -80,5 +115,5 @@
     >RELAY ACTIVITY (24H, UTC)</span
   >
 
-  <Line {data} />
+  <Line {data} {options} />
 </div>
