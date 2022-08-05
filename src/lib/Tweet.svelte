@@ -7,10 +7,10 @@
 
 <div class="p-3 mb-2">
   <div class="flex justify-between mb-2">
-    <span>{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span>
-    <span class="text-neutral-400">{format(time * 1000)}</span>
+    <span class="text-stone-600 font-semibold">{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span>
+    <span class="text-stone-400">{format(time * 1000)}</span>
   </div>
-  <p class="break-words text-neutral-600">
+  <p class="break-words text-stone-500">
     {message}
   </p>
 </div>

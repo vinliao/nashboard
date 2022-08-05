@@ -1,5 +1,6 @@
 <div class="p-3">
-  <span class="block text-center text-neutral-700 font-black tracking-tighter text-4xl"
-    >MINDS ON <span class="text-orange-600 underline decoration-wavy decoration-2 decoration-cyan-500">NOSTR</span></span
+  <span
+    class="block text-center text-stone-800 font-bold font-sartoshi text-8xl"
+    >nashboard</span
   >
 </div>

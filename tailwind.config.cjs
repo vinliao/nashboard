@@ -7,6 +7,7 @@ const config = {
 		extend: {
 			fontFamily: {
 				sans: ["Inter var", ...defaultConfig.fontFamily.sans],
+				sartoshi: ["Sartoshi Script", ...defaultConfig.fontFamily.sans],
 			}
 		}
 	},
