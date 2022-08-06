@@ -18,24 +18,21 @@
   import Pie from "$lib/Pie.svelte";
   import Tweet from "$lib/Tweet.svelte";
   import Title from "$lib/Title.svelte";
-  import Frequent from "$lib/Frequent.svelte";
-  import RelayData from "$lib/RelayData.svelte";
+  import Where from "$lib/Where.svelte";
   import SingleNumber from "$lib/SingleNumber.svelte";
   import Relay from "$lib/Relay.svelte";
+  import MiddleText from "$lib/MiddleText.svelte";
 
   const allTweets = data.events;
-  const fewTweets = data.events.slice(0, 5);
+  const fewTweets = data.events.slice(0, 7);
   let tweets = fewTweets;
 </script>
 
 <!-- if fetch error -->
 {#if allTweets.length == 0}
-  <div class="flex justify-center mt-10">
-    <span
-      class="block text-center text-stone-800 font-sartoshi text-4xl"
-      >oops, something went wrong while fetching the data, refresh page</span
-    >
-  </div>
+  <MiddleText
+    message={"oops, something went wrong while fetching the data, refresh page"}
+  />
 {:else}
   <div class="p-2 space-y-1 max-w-md mx-auto xl:hidden">
     <div class="space-y-1">
@@ -60,13 +57,14 @@
         {/each}
       </div>
 
-      <div class="flex">
+      <!-- active: text stone 800, arrow stone 500 -->
+      <div class="flex cursor-not-allowed">
         <div class="flex-1" />
         <div class="flex items-center space-x-1">
-          <span class="text-stone-800 font-mono tracking-widest">more</span>
+          <span class="text-stone-300 font-mono tracking-widest">more</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4 text-stone-500"
+            class="h-4 w-4 text-stone-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -84,9 +82,9 @@
 
     <!-- <SingleNumber number={103} label={"UNIQUE PUBKEYS 24H"} /> -->
     <div class="space-y-1">
-      <RelayData />
+      <Where where={data.where}/>
       <Pie kinds={data.kinds} />
-      <Relay relayData={data.relays}/>
+      <Relay relayData={data.relays} />
     </div>
   </div>
   <!-- 

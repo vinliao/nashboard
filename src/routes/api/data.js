@@ -3,6 +3,10 @@ import WebSocket from 'ws';
 
 const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinus24h = unixTime - 60 * 60 * 24;
+
+/*
+Note: if you'd like to add your relay, please add the alias too!
+*/
 const relays = [
   "wss://nostr-pub.wellorder.net",
   "wss://relayer.fiatjaf.com",
@@ -20,7 +24,30 @@ const relays = [
   "wss://relay.damus.io",
   "wss://nostr.openchain.fr",
   "wss://nostr.delo.software",
-  "wss://relay.minds.com/nostr/v1/ws"
+  "wss://relay.minds.com/nostr/v1/ws",
+  "wss://nostr.oxtr.dev",
+  "wss://moonbreeze.richardbondi.net/ws"
+];
+const relayAlias = [
+  "wellorder pub",
+  "fiatjaf relay",
+  "nostr rocks",
+  "rsslay fiatjaf",
+  "freedom relay",
+  "freeberty",
+  "bitcoiner social",
+  "wlvs space",
+  "onsats",
+  "untethr",
+  "wellorder verified",
+  "drrs",
+  "unknown place",
+  "damus",
+  "openchain",
+  "delo",
+  "minds",
+  "oxtr",
+  "richardbondi"
 ];
 
 export async function get() {
@@ -59,13 +86,26 @@ export async function get() {
   // wait the events to collect first
   await new Promise(r => setTimeout(r, 2200));
 
-  const uniqueEvents = _.uniq(events, (event) => event.created_at);
+  const uniqueEvents = _.uniq(events, (event) => event.id);
   const sortedEvents = _.sortBy(uniqueEvents, "created_at");
   const latestEvents = sortedEvents.reverse().slice(0, 20);
   const kindsList = _.countBy(events, "kind");
   const relayList = _.countBy(events, "relay");
   const pubkeyCount = _.countBy(events, "pubkey");
   const uniquePubkeys = Object.keys(pubkeyCount).length;
+
+  let whereArray = [];
+  for (let i = 0; i < latestEvents.length; i++) {
+    const currentId = _.filter(events, (event) => event.id == latestEvents[i].id);
+    let currentRelays = [];
+    for (let j = 0; j < currentId.length; j++) {
+      for (let k = 0; k < relays.length; k++) {
+        const currentRelay = currentId[j].relay;
+        if (currentRelay == relays[k]) currentRelays.push(relayAlias[k]);
+      }
+    }
+    whereArray.push([latestEvents[i].id, currentRelays]);
+  }
 
   // count peak event in utc
   const eventsUTC = events.map(event => {
@@ -75,5 +115,5 @@ export async function get() {
 
   const UTCList = _.countBy(eventsUTC);
 
-  return { body: { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayList, count24h: events.length, events: latestEvents } };
+  return { body: { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayList, count24h: events.length, events: latestEvents, where: whereArray } };
 }

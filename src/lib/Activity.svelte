@@ -98,7 +98,7 @@
         },
       },
       y: {
-        ticks: { font: { size: 16 }, color: "#57534e" },
+        ticks: { font: { size: 16 }, color: "#57534e", precision: 0 },
         display: true,
         title: {
           display: true,
@@ -111,7 +111,7 @@
   };
 </script>
 
-<div class="p-3 border-2 border-orange-200 bg-white">
+<div class="p-5 border-2 border-orange-200 bg-white">
   <span class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
     >NETWORK ACTIVITY (24H, UTC)</span
   >

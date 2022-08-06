@@ -4,7 +4,7 @@
   export let relayData;
 
   // note: it's 6 because beyond that it's too cramped
-  const sortedCutoff = 6
+  const sortedCutoff = 6;
   const relays = Object.keys(relayData);
 
   let sorted = [];
@@ -21,8 +21,8 @@
   for (let i = 0; i < Math.min(sortedCutoff, sorted.length); i++) {
     relayList.push(sorted[i][0].slice(6)); // cut the wss://
     relayCount.push(sorted[i][1]);
-    if (i == 0) backgrounds.push("#a5f3fc");
-    else if (i == 1) backgrounds.push("#fdba74");
+    if (i == 0) backgrounds.push("#fdba74");
+    else if (i == 1) backgrounds.push("#a5f3fc");
     else if (i == 2) backgrounds.push("#d6d3d1");
     else backgrounds.push("#e7e5e4");
   }
@@ -63,7 +63,7 @@
   };
 </script>
 
-<div class="p-3 border-2 border-orange-200 bg-white">
+<div class="p-5 border-2 border-orange-200 bg-white">
   <span
     class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
     >MOST CROWDED RELAYS (24H)</span
