@@ -38,6 +38,10 @@
   <div class="p-2 space-y-1 max-w-lg mx-auto xl:hidden py-7">
     <div class="space-y-1">
       <Title />
+      <span
+        class="block text-center text-stone-800 font-bold font-sartoshi tracking-wider text-5xl sm:text-6xl pb-7 sm:pb-9"
+        >for <span class="text-amber-400">minds</span>
+      </span>
       <div class="sm:flex space-y-1 sm:space-y-0 sm:space-x-1">
         <div class="flex-1">
           <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
@@ -61,6 +65,10 @@
 
   <div class="hidden xl:flex xl:flex-col mx-auto space-x-2 max-w-7xl py-7">
     <Title />
+    <span
+      class="block text-center text-stone-800 font-bold font-sartoshi tracking-wider text-7xl mb-12"
+      >for <span class="text-amber-400">minds</span>
+    </span>
     <div class="flex space-x-1 items-start">
       <div class="space-y-1 shrink-0">
         <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
