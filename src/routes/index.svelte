@@ -23,9 +23,17 @@
   import Relay from "$lib/Relay.svelte";
   import MiddleText from "$lib/MiddleText.svelte";
 
+  const totalTweets = 7;
   const allTweets = data.events;
-  const fewTweets = data.events.slice(0, 7);
+  const fewTweets = data.events.slice(0, totalTweets);
   let tweets = fewTweets;
+
+  let foundIn = [];
+  for (let i = 0; i < totalTweets; i++) {
+    foundIn.push(data.where[i][1]);
+  }
+
+  console.log(foundIn);
 </script>
 
 <!-- if fetch error -->
@@ -42,17 +50,20 @@
       <Activity networkActivity={data.utc} />
     </div>
 
+    <!-- recent events -->
+    <!-- this isn't its own component because it's buggy as hell! -->
     <div class="p-5 border-2 border-orange-200 bg-white">
       <span
         class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
         >LATEST EVENTS</span
       >
       <div class="flex flex-col">
-        {#each tweets as tweet}
+        {#each tweets as tweet, tweetIndex}
           <Tweet
             time={tweet.created_at}
             message={tweet.content}
             pubkey={tweet.pubkey}
+            foundIn={foundIn[tweetIndex]}
           />
         {/each}
       </div>
@@ -79,10 +90,9 @@
         </div>
       </div>
     </div>
+    <!-- end of recent events -->
 
-    <!-- <SingleNumber number={103} label={"UNIQUE PUBKEYS 24H"} /> -->
     <div class="space-y-1">
-      <Where where={data.where}/>
       <Pie kinds={data.kinds} />
       <Relay relayData={data.relays} />
     </div>

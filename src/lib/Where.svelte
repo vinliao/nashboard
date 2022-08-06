@@ -1,7 +1,7 @@
 <script>
   // format: [id, [relays1, relay2]]
   export let where;
-  const totalWhere = 7; // how much data to display, default is 20
+  const totalWhere = Math.min(7, where.length); // how much data to display, default is 20
 
   let ids = [];
   let appearedIn = [];
@@ -28,12 +28,12 @@
         {#each appearedIn[index] as place}
           {#if place == "damus"}
             <span
-              class="bg-purple-50 border-2 border-purple-200 rounded-md px-1 text-purple-600"
+              class="bg-purple-50 border-2 border-purple-200 rounded-md px-1 text-purple-500"
               >{place}</span
             >
           {:else if place == "wellorder pub"}
             <span
-              class="bg-cyan-50 border-2 border-cyan-200 rounded-md px-1 text-cyan-500"
+              class="bg-sky-50 border-2 border-sky-200 rounded-md px-1 text-blue-400"
               >{place}</span
             >
           {:else if place == "minds"}
