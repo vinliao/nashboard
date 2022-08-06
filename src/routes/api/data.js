@@ -115,5 +115,5 @@ export async function get() {
 
   const UTCList = _.countBy(eventsUTC);
 
-  return { body: { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayList, count24h: events.length, events: latestEvents, where: whereArray } };
+  return { body: { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayList, eventCount: events.length, events: latestEvents, where: whereArray } };
 }

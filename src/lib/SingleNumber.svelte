@@ -8,6 +8,6 @@
     >{label}</span
   >
   <div class="text-center">
-    <span class="text-4xl text-stone-700 tracking-tighter">{number}</span>
+    <span class="text-4xl text-stone-700 tracking-[-0.075em]">{number}</span>
   </div>
 </div>

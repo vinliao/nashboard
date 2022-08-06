@@ -1,6 +1,4 @@
-<div class="pt-7">
-  <span
-    class="block text-center text-stone-800 font-bold font-sartoshi tracking-wide text-7xl"
-    >nashboard</span
-  >
-</div>
+<span
+  class="block text-center text-stone-800 font-bold font-sartoshi tracking-wider text-7xl sm:text-8xl xl:text-9xl"
+  >nashboard</span
+>
