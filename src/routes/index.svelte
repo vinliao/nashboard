@@ -32,8 +32,6 @@
   for (let i = 0; i < totalTweets; i++) {
     foundIn.push(data.where[i][1]);
   }
-
-  console.log(foundIn);
 </script>
 
 <!-- if fetch error -->
