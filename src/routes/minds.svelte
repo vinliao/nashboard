@@ -1,6 +1,6 @@
 <script context="module">
   export async function load({ fetch }) {
-    const response = await fetch("/api/data");
+    const response = await fetch("/api/data/minds");
     const data = await response.json();
 
     return {
@@ -18,7 +18,6 @@
   import Pie from "$lib/Pie.svelte";
   import Title from "$lib/Title.svelte";
   import SingleNumber from "$lib/SingleNumber.svelte";
-  import Relay from "$lib/Relay.svelte";
   import MiddleText from "$lib/MiddleText.svelte";
   import TweetList from "$lib/TweetList.svelte";
 
@@ -57,7 +56,6 @@
 
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
-      <Relay relayData={data.relays} />
     </div>
   </div>
 
@@ -77,7 +75,6 @@
       <div class="space-y-1 basis-1/2">
         <Activity networkActivity={data.utc} />
         <Pie kinds={data.kinds} />
-        <Relay relayData={data.relays} />
       </div>
     </div>
   </div>
