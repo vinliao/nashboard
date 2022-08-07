@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"frappe-charts": "^1.6.2",
 		"svelte-chartjs": "^1.1.4",
 		"timeago.js": "^4.0.2",
 		"underscore": "^1.13.2",

@@ -831,6 +831,11 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
+frappe-charts@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/frappe-charts/-/frappe-charts-1.6.2.tgz#4671a943a8606e5020180fa65c8ea1835c510baf"
+  integrity sha512-9TC3/+YVUi84yYoEbxFiSqu+1FQ5If/ydUNj6i8FRpwynd08t6a7RkS+IRJozAk6NfdL8/LVTTE1DUOjjKZZxg==
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
