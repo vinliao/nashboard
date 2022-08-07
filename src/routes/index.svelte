@@ -25,10 +25,10 @@
   import TweetList from "$lib/TweetList.svelte";
   import { setContext } from "svelte";
 
-  const shortListAmount = 8;
-  const longListAmount = 30;
-
   const allTweets = data.events;
+  const shortListAmount = 8;
+  const longListAmount = Math.min(50, allTweets.length);
+
   let tweets = allTweets.slice(0, shortListAmount);
 
   let allFoundIn = [];
@@ -76,7 +76,7 @@
       <Activity networkActivity={data.utc} />
     </div>
 
-    <TweetList {tweets} {foundIn} {shortListAmount}/>
+    <TweetList {tweets} {foundIn} {shortListAmount} />
 
     <div class="space-y-1">
       <Pie kinds={data.kinds} />

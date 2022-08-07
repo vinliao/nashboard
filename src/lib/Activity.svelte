@@ -88,7 +88,7 @@
     },
     scales: {
       x: {
-        ticks: { font: { size: 16 }, color: "#57534e" },
+        ticks: { font: { size: 12 }, color: "#57534e" },
         display: true,
         title: {
           display: true,
@@ -98,7 +98,7 @@
         },
       },
       y: {
-        ticks: { font: { size: 16 }, color: "#57534e", precision: 0 },
+        ticks: { font: { size: 12 }, color: "#57534e", precision: 0 },
         display: true,
         title: {
           display: true,
