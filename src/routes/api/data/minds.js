@@ -52,7 +52,7 @@ export async function get() {
 
   const uniqueEvents = _.uniq(events, (event) => event.id);
   const sortedEvents = _.sortBy(uniqueEvents, "created_at");
-  const latestEvents = sortedEvents.reverse().slice(0, 8);
+  const latestEvents = sortedEvents.reverse();
   const kindsList = _.countBy(events, "kind");
   const relayList = _.countBy(events, "relay");
   const pubkeyCount = _.countBy(events, "pubkey");
