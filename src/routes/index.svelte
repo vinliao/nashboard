@@ -16,6 +16,7 @@
 
 <script>
   export let data = {};
+  import _ from 'underscore'
   import Activity from "$lib/Activity.svelte";
   import Pie from "$lib/Pie.svelte";
   import Title from "$lib/Title.svelte";
@@ -33,7 +34,8 @@
 
   let allFoundIn = [];
   for (let i = 0; i < allTweets.length; i++) {
-    allFoundIn.push(data.where[i][1]);
+    // shuffle the foundIn array just for the aesthetic
+    allFoundIn.push(_.shuffle(data.where[i][1]));
   }
   let foundIn = allFoundIn.slice(0, shortListAmount);
 
@@ -62,6 +64,29 @@
   <div class="p-2 space-y-1 max-w-lg mx-auto xl:hidden py-7">
     <div class="space-y-1">
       <Title />
+      <!-- about -->
+      <!-- <div class="flex">
+        <div class="flex-1" />
+        <a
+          href="/about"
+          class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
+          >about<svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-stone-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg></a
+        >
+      </div> -->
+      <!-- end of about -->
       <div class="sm:flex space-y-1 sm:space-y-0 sm:space-x-1">
         <div class="flex-1">
           <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
@@ -84,8 +109,31 @@
     </div>
   </div>
 
-  <div class="hidden xl:flex xl:flex-col mx-auto space-x-2 max-w-7xl py-7">
+  <div class="hidden xl:flex xl:flex-col mx-auto max-w-7xl py-7">
     <Title />
+    <!-- about -->
+    <!-- <div class="flex">
+      <div class="flex-1" />
+      <a
+        href="/about"
+        class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
+        >about<svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 text-stone-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 5l7 7-7 7"
+          />
+        </svg></a
+      >
+    </div> -->
+    <!-- end of about -->
     <div class="flex space-x-1 items-start">
       <div class="space-y-1 shrink-0">
         <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />

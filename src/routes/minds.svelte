@@ -84,7 +84,7 @@
     </div>
   </div>
 
-  <div class="hidden xl:flex xl:flex-col mx-auto space-x-2 max-w-7xl py-7">
+  <div class="hidden xl:flex xl:flex-col mx-auto max-w-7xl py-7">
     <span
       class="block text-center text-amber-400 font-bold font-sartoshi tracking-wider text-7xl"
       >minds.com
