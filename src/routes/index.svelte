@@ -16,7 +16,7 @@
 
 <script>
   export let data = {};
-  import _ from 'underscore'
+  import _ from "underscore";
   import Activity from "$lib/Activity.svelte";
   import Pie from "$lib/Pie.svelte";
   import Title from "$lib/Title.svelte";
@@ -64,29 +64,27 @@
   <div class="p-2 space-y-1 max-w-lg mx-auto xl:hidden py-7">
     <div class="space-y-1">
       <Title />
-      <!-- about -->
-      <!-- <div class="flex">
+      <div class="flex">
         <div class="flex-1" />
         <a
-          href="/about"
+          href="https://github.com/vinliao/nashboard"
           class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
-          >about<svg
+          >github
+          <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4 text-stone-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            stroke-width="2"
+            class="h-5 w-5 text-stone-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M9 5l7 7-7 7"
+              d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
             />
-          </svg></a
-        >
-      </div> -->
-      <!-- end of about -->
+            <path
+              d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+            />
+          </svg>
+        </a>
+      </div>
       <div class="sm:flex space-y-1 sm:space-y-0 sm:space-x-1">
         <div class="flex-1">
           <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
@@ -111,29 +109,29 @@
 
   <div class="hidden xl:flex xl:flex-col mx-auto max-w-7xl py-7">
     <Title />
-    <!-- about -->
-    <!-- <div class="flex">
+
+    <div class="flex">
       <div class="flex-1" />
       <a
-        href="/about"
+        href="https://github.com/vinliao/nashboard"
         class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
-        >about<svg
+        >github
+        <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 text-stone-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+          class="h-5 w-5 text-stone-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 5l7 7-7 7"
+            d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
           />
-        </svg></a
-      >
-    </div> -->
-    <!-- end of about -->
+          <path
+            d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+          />
+        </svg>
+      </a>
+    </div>
+
     <div class="flex space-x-1 items-start">
       <div class="space-y-1 shrink-0">
         <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />

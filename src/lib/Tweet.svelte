@@ -24,12 +24,7 @@
   </p>
   <div class="flex text-sm flex-wrap">
     {#each foundIn as place}
-      {#if place == "damus"}
-        <span
-          class="border mr-0.5 mb-0.5 border-purple-200 rounded-md px-1 text-purple-500"
-          >{place}</span
-        >
-      {:else if place == "wellorder pub"}
+      {#if place == "wellorder pub"}
         <span
           class="border mr-0.5 mb-0.5 border-cyan-200 rounded-md px-1 text-blue-400"
           >{place}</span
@@ -39,10 +34,10 @@
           class="border mr-0.5 mb-0.5 border-yellow-200 rounded-md px-1 text-yellow-600"
           >{place}</span
         >
-      {:else if place == "oxtr"}
-        <spa
+      {:else if place == "damus"}
+        <span
           class="border mr-0.5 mb-0.5 border-red-200 rounded-md px-1 text-red-400"
-          >{place}</spa
+          >{place}</span
         >
       {:else}
         <span
