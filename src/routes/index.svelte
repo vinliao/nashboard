@@ -1,5 +1,7 @@
 <script context="module">
   export async function load({ fetch }) {
+    // to prevent the constant loading, store data in
+    // svelte store, then only fetch if svelte store is empty
     const response = await fetch("/api/data");
     const data = await response.json();
 
@@ -21,13 +23,34 @@
   import Relay from "$lib/Relay.svelte";
   import MiddleText from "$lib/MiddleText.svelte";
   import TweetList from "$lib/TweetList.svelte";
+  import { setContext } from "svelte";
 
-  let tweets = data.events;
+  const shortListAmount = 8;
+  const longListAmount = 30;
 
-  let foundIn = [];
-  for (let i = 0; i < tweets.length; i++) {
-    foundIn.push(data.where[i][1]);
+  const allTweets = data.events;
+  let tweets = allTweets.slice(0, shortListAmount);
+
+  let allFoundIn = [];
+  for (let i = 0; i < allTweets.length; i++) {
+    allFoundIn.push(data.where[i][1]);
   }
+  let foundIn = allFoundIn.slice(0, shortListAmount);
+
+  let tweetsExpanded = false;
+  function toggleTweetLength() {
+    if (!tweetsExpanded) {
+      tweets = allTweets.slice(0, longListAmount);
+      foundIn = allFoundIn.slice(0, longListAmount);
+    } else {
+      tweets = allTweets.slice(0, shortListAmount);
+      foundIn = allFoundIn.slice(0, shortListAmount);
+    }
+
+    tweetsExpanded = !tweetsExpanded;
+  }
+
+  setContext("expander", { toggleTweetLength });
 </script>
 
 <!-- if fetch error -->
@@ -53,7 +76,7 @@
       <Activity networkActivity={data.utc} />
     </div>
 
-    <TweetList {tweets} {foundIn} />
+    <TweetList {tweets} {foundIn} {shortListAmount}/>
 
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
@@ -72,7 +95,7 @@
         />
       </div>
 
-      <TweetList {tweets} {foundIn} />
+      <TweetList {tweets} {foundIn} {shortListAmount} />
 
       <div class="space-y-1 basis-1/2">
         <Activity networkActivity={data.utc} />
