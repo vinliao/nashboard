@@ -50,7 +50,7 @@
         ticks: { font: { size: 16 }, color: "#a8a29e" },
       },
       y: {
-        ticks: { font: { size: 16 }, color: "#57534e" },
+        ticks: { font: { size: 12 }, color: "#57534e" },
         display: true,
         title: {
           display: true,
