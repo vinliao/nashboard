@@ -22,8 +22,8 @@
     relayList.push(sorted[i][0].slice(6)); // cut the wss://
     relayCount.push(sorted[i][1]);
     if (i == 0) backgrounds.push("#fdba74");
-    else if (i == 1) backgrounds.push("#a5f3fc");
-    else if (i == 2) backgrounds.push("#d6d3d1");
+    else if (i == 1) backgrounds.push("#FED7AA");
+    else if (i == 2) backgrounds.push("#D6D3D1");
     else backgrounds.push("#e7e5e4");
   }
 

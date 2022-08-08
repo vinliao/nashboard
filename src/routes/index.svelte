@@ -24,6 +24,8 @@
   import Relay from "$lib/Relay.svelte";
   import MiddleText from "$lib/MiddleText.svelte";
   import TweetList from "$lib/TweetList.svelte";
+  import LinkOut from "$lib/LinkOut.svelte";
+  import Heatmap from "$lib/Heatmap.svelte";
   import { setContext } from "svelte";
 
   const allTweets = data.events;
@@ -64,27 +66,7 @@
   <div class="p-2 space-y-1 max-w-lg mx-auto xl:hidden py-7">
     <div class="space-y-1">
       <Title />
-      <div class="flex">
-        <div class="flex-1" />
-        <a
-          href="https://github.com/vinliao/nashboard"
-          class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
-          >github
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-stone-400"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-            />
-            <path
-              d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-            />
-          </svg>
-        </a>
-      </div>
+      <LinkOut />
       <div class="sm:flex space-y-1 sm:space-y-0 sm:space-x-1">
         <div class="flex-1">
           <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
@@ -104,34 +86,13 @@
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
       <Relay relayData={data.relays} />
+      <Heatmap />
     </div>
   </div>
 
   <div class="hidden xl:flex xl:flex-col mx-auto max-w-7xl py-7">
     <Title />
-
-    <div class="flex">
-      <div class="flex-1" />
-      <a
-        href="https://github.com/vinliao/nashboard"
-        class="font-mono tracking-widest text-stone-500 flex space-x-1 items-center"
-        >github
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-stone-400"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-          />
-          <path
-            d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-          />
-        </svg>
-      </a>
-    </div>
-
+    <LinkOut />
     <div class="flex space-x-1 items-start">
       <div class="space-y-1 shrink-0">
         <SingleNumber number={data.eventCount} label={"EVENT COUNT 24H"} />
@@ -147,6 +108,7 @@
         <Activity networkActivity={data.utc} />
         <Pie kinds={data.kinds} />
         <Relay relayData={data.relays} />
+        <Heatmap />
       </div>
     </div>
   </div>

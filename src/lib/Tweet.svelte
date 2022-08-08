@@ -15,7 +15,7 @@
 <div class="mb-10">
   <div class="flex justify-between mb-2">
     <span class="text-stone-600 font-semibold"
-      >{pubkey.slice(0, 7) + "..." + pubkey.slice(-7)}</span
+      >{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span
     >
     <span class="text-stone-400">{format(time * 1000)}</span>
   </div>
@@ -41,7 +41,7 @@
         >
       {:else}
         <span
-          class="border mr-0.5 mb-0.5 border-stone-200 rounded-md px-1 text-stone-500"
+          class="border mr-0.5 mb-0.5 border-stone-300 rounded-md px-1 text-stone-500"
           >{place}</span
         >
       {/if}

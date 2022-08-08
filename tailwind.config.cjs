@@ -1,4 +1,4 @@
-const defaultConfig = require('tailwindcss/defaultTheme')
+const defaultConfig = require('tailwindcss/defaultTheme');
 
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -10,7 +10,13 @@ const config = {
 				mono: ["Fira Code", ...defaultConfig.fontFamily.mono],
 				sartoshi: ["Sartoshi Script", ...defaultConfig.fontFamily.sans],
 			}
-		}
+		},
+		screens: {
+			// for heatmap
+			'heatmap-xxs': '360px',
+			'heatmap-xs': '430px',
+			...defaultConfig.screens,
+		},
 	},
 
 	plugins: []
