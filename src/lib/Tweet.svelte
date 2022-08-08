@@ -24,7 +24,7 @@
   </p>
   <div class="flex text-sm flex-wrap">
     {#each foundIn as place}
-      {#if place == "wellorder pub"}
+      {#if place == "wellorder"}
         <span
           class="border mr-0.5 mb-0.5 border-cyan-200 rounded-md px-1 text-blue-400"
           >{place}</span

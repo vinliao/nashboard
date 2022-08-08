@@ -1,6 +1,6 @@
 <script context="module">
-  export async function load({ fetch }) {
-    const response = await fetch("/api/data/minds");
+  export async function load({ fetch, params }) {
+    const response = await fetch(`/api/data/${params.relay}`);
     const data = await response.json();
 
     return {
@@ -30,7 +30,11 @@
 
   let allFoundIn = [];
   for (let i = 0; i < allTweets.length; i++) {
-    allFoundIn.push(data.where[i][1]);
+    // shuffle the foundIn array just for the aesthetic
+
+    // array of length 1 because child component
+    // expects an array, not a string
+    allFoundIn.push([data.where[i][1]]);
   }
   let foundIn = allFoundIn.slice(0, shortListAmount);
 
@@ -51,16 +55,16 @@
 </script>
 
 <!-- if fetch error -->
-{#if tweets.length == 0}
+{#if data.events.length == 0}
   <MiddleText
-    message={"oops, something went wrong while fetching the data, refresh page"}
+    message={"oops, something went wrong while fetching the data, refresh page, the url might be incorrect"}
   />
 {:else}
   <div class="p-2 space-y-1 max-w-lg mx-auto xl:hidden py-7">
     <div class="space-y-1">
       <span
-        class="block text-center text-amber-400 font-bold font-sartoshi tracking-wider text-5xl sm:text-6xl"
-        >minds.com
+        class="block text-center text-amber-400 font-bold font-sartoshi tracking-wider text-4xl sm:text-5xl break-words"
+        >{data.relay}
       </span>
       <Title />
       <div class="sm:flex space-y-1 sm:space-y-0 sm:space-x-1">
@@ -86,8 +90,8 @@
 
   <div class="hidden xl:flex xl:flex-col mx-auto max-w-7xl py-7">
     <span
-      class="block text-center text-amber-400 font-bold font-sartoshi tracking-wider text-7xl"
-      >minds.com
+      class="block text-center text-amber-400 font-bold font-sartoshi tracking-wider text-6xl"
+      >{data.relay}
     </span>
     <Title />
     <div class="flex space-x-1 items-start">

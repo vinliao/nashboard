@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import WebSocket from 'ws';
-import { relays, relayAlias } from '$lib/relays';
+import { relays, relayAliases } from '$lib/relays';
 
 const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinus24h = unixTime - 60 * 60 * 24;
@@ -56,7 +56,7 @@ export async function get() {
     for (let j = 0; j < currentId.length; j++) {
       for (let k = 0; k < relays.length; k++) {
         const currentRelay = currentId[j].relay;
-        if (currentRelay == relays[k]) currentRelays.push(relayAlias[k]);
+        if (currentRelay == relays[k]) currentRelays.push(relayAliases[k]);
       }
     }
     whereArray.push([latestEvents[i].id, currentRelays]);
