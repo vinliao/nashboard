@@ -23,7 +23,7 @@
     relayCount.push(sorted[i][1]);
     if (i == 0) backgrounds.push("#fdba74");
     else if (i == 1) backgrounds.push("#FED7AA");
-    else if (i == 2) backgrounds.push("#D6D3D1");
+    else if (i == 2) backgrounds.push("#e7e5e4");
     else backgrounds.push("#e7e5e4");
   }
 
