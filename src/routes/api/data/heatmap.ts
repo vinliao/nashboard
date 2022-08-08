@@ -1,34 +1,19 @@
 import _ from 'underscore';
 import WebSocket from 'ws';
+import { relays } from '$lib/relays';
 
 const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinus6mo = Math.floor(unixTime - 60 * 60 * 24 * 365 / 2);
 
-const relays = [
-  "wss://nostr-pub.wellorder.net",
-  "wss://relayer.fiatjaf.com",
-  "wss://nostr.rocks",
-  "wss://rsslay.fiatjaf.com",
-  "wss://freedom-relay.herokuapp.com/ws",
-  "wss://nostr-relay.freeberty.net",
-  "wss://nostr.bitcoiner.social",
-  "wss://nostr-relay.wlvs.space",
-  "wss://nostr.onsats.org",
-  "wss://nostr-relay.untethr.me",
-  "wss://nostr-verified.wellorder.net",
-  "wss://nostr.drss.io",
-  "wss://nostr.unknown.place",
-  "wss://relay.damus.io",
-  "wss://nostr.openchain.fr",
-  "wss://nostr.delo.software",
-  "wss://relay.minds.com/nostr/v1/ws",
-  "wss://nostr.oxtr.dev",
-  "wss://moonbreeze.richardbondi.net/ws"
-];
-
 export async function get() {
 
-  // it's possible that there's implementation or logic error in this
+  // tl;dr
+  // 1. take all events from the past six months
+  // 2. "squash" the timestamp
+  // 3. use _.countBy to count the timestamps
+
+  // there may be implementation error in this (i think it's likely)
+  // take the data with a grain of salt
 
   let events = [];
   relays.forEach((relay, relayIndex) => {
