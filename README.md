@@ -11,4 +11,6 @@ If you'd like to add your relay, add a line on `src/lib/relays.ts`, then submit 
 
 The aliases include `wellorder`, `damus`, `minds`, `oxtr`, `wlvs.space`, and many more. To view stats of wellorder, head to [nashboard.com/wellorder](https://nashboard.com/wellorder), to view stats of wlvs.space, head to [nashboard.com/wlvs.space](https://nashboard.com/wlvs.space), to view stats of minds... you get the idea. To view all the aliases, check out `src/lib/relays.ts`.
 
+A note on the "heatmap" - the 6 month event count, the GitHub-like commit squares. Yes, that's real data. The data is hardcoded on `src/lib/heatmapData.ts`, the data is created with `src/routes/api/data/heatmap.ts`. The current plan is to update that hardcoded data once a month. I know this is not the optimal solution, I'm still figuring out a better way to do it.
+
 ![nostr meme](./meme.jpg)
