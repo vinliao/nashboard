@@ -23,7 +23,7 @@ const relayList = [
   ["wss://nostr.oxtr.dev", 'oxtr'],
   ["wss://moonbreeze.richardbondi.net/ws", 'richardbondi'],
   ["wss://nostr.semisol.dev", 'semisol'],
-  ["wss://nostr-pub.semisol.dev", 'semisol-pub']
+  ["wss://nostr-pub.semisol.dev", 'semisol.pub']
 ];
 
 export let relays = [];

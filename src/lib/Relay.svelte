@@ -2,7 +2,6 @@
   import Bar from "svelte-chartjs/src/Bar.svelte";
   import _ from "underscore";
   export let relayData;
-  console.log(relayData);
 
   // note: it's 6 because beyond that it's too cramped
   const sortedCutoff = 6;
