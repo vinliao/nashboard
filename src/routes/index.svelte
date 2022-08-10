@@ -26,6 +26,7 @@
   import TweetList from "$lib/TweetList.svelte";
   import LinkOut from "$lib/LinkOut.svelte";
   import Heatmap from "$lib/Heatmap.svelte";
+  import HeatmapBig from "$lib/HeatmapBig.svelte";
   import { setContext } from "svelte";
 
   const allTweets = data.events;
@@ -108,7 +109,7 @@
         <Activity networkActivity={data.utc} />
         <Pie kinds={data.kinds} />
         <Relay relayData={data.relays} />
-        <Heatmap />
+        <HeatmapBig />
       </div>
     </div>
   </div>

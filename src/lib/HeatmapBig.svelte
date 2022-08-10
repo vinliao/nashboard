@@ -8,7 +8,7 @@
 
   const endDate = new Date("31 July 2022");
   let startDate = new Date();
-  startDate.setMonth(startDate.getMonth() - 5);
+  startDate.setMonth(startDate.getMonth() - 6);
   let data = {
     dataPoints: heatmapData,
     start: startDate,

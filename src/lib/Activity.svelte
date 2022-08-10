@@ -92,7 +92,7 @@
         display: true,
         title: {
           display: true,
-          text: "Hours",
+          text: "Hours (UTC)",
           font: { size: 16 },
           color: "#a8a29e",
         },
@@ -113,7 +113,7 @@
 
 <div class="p-5 border-2 border-orange-200 bg-white">
   <span class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
-    >NETWORK ACTIVITY (24H, UTC)</span
+    >NETWORK ACTIVITY (24H)</span
   >
 
   <Line {data} {options} />
