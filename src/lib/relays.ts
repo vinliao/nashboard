@@ -21,7 +21,9 @@ const relayList = [
   ["wss://nostr.delo.software", 'delo'],
   ["wss://relay.minds.com/nostr/v1/ws", 'minds'],
   ["wss://nostr.oxtr.dev", 'oxtr'],
-  ["wss://moonbreeze.richardbondi.net/ws", 'richardbondi']
+  ["wss://moonbreeze.richardbondi.net/ws", 'richardbondi'],
+  ["wss://nostr.semisol.dev", 'semisol'],
+  ["wss://nostr-pub.semisol.dev", 'semisol-pub']
 ];
 
 export let relays = [];
