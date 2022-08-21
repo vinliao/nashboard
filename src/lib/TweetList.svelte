@@ -71,7 +71,7 @@
     </div>
   {:else}
     <!-- button -->
-    <div class="flex">
+    <div class="flex xl:hidden">
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
