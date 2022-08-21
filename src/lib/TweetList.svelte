@@ -1,6 +1,6 @@
 <script>
   import Tweet from "$lib/Tweet.svelte";
-  import { fly } from "svelte/transition";
+  import { fly, slide } from "svelte/transition";
   import { cubicOut } from "svelte/easing";
 
   export let tweets;
@@ -44,7 +44,7 @@
 
   {#if !extended}
     <!-- button -->
-    <div class="flex">
+    <div class="flex" in:slide={{duration:200, easing:cubicOut}}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
@@ -71,7 +71,7 @@
     </div>
   {:else}
     <!-- button -->
-    <div class="flex xl:hidden">
+    <div class="flex" out:slide={{duration:200, easing:cubicOut}}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
