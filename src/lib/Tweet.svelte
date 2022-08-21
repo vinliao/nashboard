@@ -21,22 +21,22 @@
       {#each foundIn as place}
         {#if place == "wellorder"}
           <span
-            class="border mr-0.5 mb-0.5 border-cyan-200 rounded-md px-1 text-blue-400"
+            class="border mr-0.5 mb-0.5 border-cyan-200 rounded-full px-1.5 text-cyan-400"
             >{place}</span
           >
         {:else if place == "minds"}
           <span
-            class="border mr-0.5 mb-0.5 border-yellow-200 rounded-md px-1 text-yellow-600"
+            class="border mr-0.5 mb-0.5 border-yellow-200 rounded-full px-1.5 text-yellow-600"
             >{place}</span
           >
         {:else if place == "damus"}
           <span
-            class="border mr-0.5 mb-0.5 border-red-200 rounded-md px-1 text-red-400"
+            class="border mr-0.5 mb-0.5 border-red-200 rounded-full px-1.5 text-red-400"
             >{place}</span
           >
         {:else}
           <span
-            class="border mr-0.5 mb-0.5 border-stone-300 rounded-md px-1 text-stone-500"
+            class="border mr-0.5 mb-0.5 border-stone-300 rounded-full px-1.5 text-stone-500"
             >{place}</span
           >
         {/if}
