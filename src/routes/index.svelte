@@ -27,37 +27,20 @@
   import LinkOut from "$lib/LinkOut.svelte";
   import Heatmap from "$lib/Heatmap.svelte";
   import HeatmapBig from "$lib/HeatmapBig.svelte";
-  import { setContext } from "svelte";
 
   const allTweets = data.events;
   const shortListAmount = 8;
-  const longListAmount = Math.min(50, allTweets.length);
+  const longListAmount = Math.min(40, allTweets.length);
 
   let tweets = allTweets.slice(0, shortListAmount);
+  let extendedTweets = allTweets.slice(shortListAmount, longListAmount);
 
-  // TODO: fix this!
-  // adjust this to the API output
   let allFoundIn = [];
   for (let i = 0; i < allTweets.length; i++) {
     // shuffle the foundIn array just for the aesthetic
     allFoundIn.push(_.shuffle(data.where[i].existsIn));
   }
-  let foundIn = allFoundIn.slice(0, shortListAmount);
-
-  let tweetsExpanded = false;
-  function toggleTweetLength() {
-    if (!tweetsExpanded) {
-      tweets = allTweets.slice(0, longListAmount);
-      foundIn = allFoundIn.slice(0, longListAmount);
-    } else {
-      tweets = allTweets.slice(0, shortListAmount);
-      foundIn = allFoundIn.slice(0, shortListAmount);
-    }
-
-    tweetsExpanded = !tweetsExpanded;
-  }
-
-  setContext("expander", { toggleTweetLength });
+  let foundIn = allFoundIn.slice(0, longListAmount);
 </script>
 
 <!-- if fetch error -->
@@ -84,7 +67,7 @@
       <Activity networkActivity={data.utc} />
     </div>
 
-    <TweetList {tweets} {foundIn} {shortListAmount} />
+    <TweetList {tweets} {extendedTweets} {foundIn} />
 
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
@@ -105,7 +88,7 @@
         />
       </div>
 
-      <TweetList {tweets} {foundIn} {shortListAmount} />
+      <TweetList {tweets} {extendedTweets} {foundIn} />
 
       <div class="space-y-1 basis-1/2">
         <Activity networkActivity={data.utc} />

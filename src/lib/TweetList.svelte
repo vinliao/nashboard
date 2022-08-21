@@ -1,12 +1,13 @@
 <script>
   import Tweet from "$lib/Tweet.svelte";
-  import { getContext } from "svelte";
-
-  const { toggleTweetLength } = getContext("expander");
+  import { fly } from "svelte/transition";
+  import { cubicOut } from "svelte/easing";
 
   export let tweets;
+  export let extendedTweets;
   export let foundIn = [];
-  export let shortListAmount;
+
+  let extended = false;
 </script>
 
 <div class="p-5 border-2 border-orange-200 bg-white xl:min-w-0 xl:basis-1/2">
@@ -14,6 +15,7 @@
     class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
     >LATEST EVENTS</span
   >
+
   <div class="flex flex-col">
     {#each tweets as tweet, tweetIndex}
       <Tweet
@@ -24,14 +26,31 @@
       />
     {/each}
   </div>
+  {#if extended}
+    <div
+      class="flex flex-col"
+      transition:fly={{ y: -20, duration: 200, easing: cubicOut }}
+    >
+      {#each extendedTweets as tweet, tweetIndex}
+        <Tweet
+          time={tweet.created_at}
+          message={tweet.content}
+          pubkey={tweet.pubkey}
+          foundIn={foundIn[tweetIndex]}
+        />
+      {/each}
+    </div>
+  {/if}
 
-  {#if tweets.length == shortListAmount}
+  {#if !extended}
     <!-- button -->
     <div class="flex">
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
-        on:click={toggleTweetLength}
+        on:click={() => {
+          extended = !extended;
+        }}
       >
         <span class="text-stone-500 font-mono tracking-widest">more</span>
         <svg
@@ -56,7 +75,9 @@
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
-        on:click={toggleTweetLength}
+        on:click={() => {
+          extended = !extended;
+        }}
       >
         <span class="text-stone-500 font-mono tracking-widest">less</span>
         <svg

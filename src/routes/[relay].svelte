@@ -20,39 +20,13 @@
   import SingleNumber from "$lib/SingleNumber.svelte";
   import MiddleText from "$lib/MiddleText.svelte";
   import TweetList from "$lib/TweetList.svelte";
-  import { setContext } from "svelte";
 
   const allTweets = data.events;
   const shortListAmount = 8;
   const longListAmount = Math.min(50, allTweets.length);
 
   let tweets = allTweets.slice(0, shortListAmount);
-
-  // let allFoundIn = [];
-  // for (let i = 0; i < allTweets.length; i++) {
-  //   // shuffle the foundIn array just for the aesthetic
-
-  //   // array of length 1 because child component
-  //   // expects an array, not a string
-  //   allFoundIn.push([data.where[i][1]]);
-  // }
-  // console.log(allFoundIn)
-  // let foundIn = allFoundIn.slice(0, shortListAmount);
-
-  let tweetsExpanded = false;
-  function toggleTweetLength() {
-    if (!tweetsExpanded) {
-      tweets = allTweets.slice(0, longListAmount);
-      // foundIn = allFoundIn.slice(0, longListAmount);
-    } else {
-      tweets = allTweets.slice(0, shortListAmount);
-      // foundIn = allFoundIn.slice(0, shortListAmount);
-    }
-
-    tweetsExpanded = !tweetsExpanded;
-  }
-
-  setContext("expander", { toggleTweetLength });
+  let extendedTweets = allTweets.slice(shortListAmount, longListAmount);
 </script>
 
 <!-- if fetch error -->
@@ -82,7 +56,7 @@
       <Activity networkActivity={data.utc} />
     </div>
 
-    <TweetList {tweets} {shortListAmount} />
+    <TweetList {tweets} {extendedTweets} />
 
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
@@ -104,7 +78,7 @@
         />
       </div>
 
-      <TweetList {tweets} {shortListAmount} />
+      <TweetList {tweets} {extendedTweets} />
 
       <div class="space-y-1 basis-1/2">
         <Activity networkActivity={data.utc} />
