@@ -1,6 +1,6 @@
 import _ from 'underscore';
 import WebSocket from 'ws';
-import { relays } from '$lib/relays';
+import { relayList } from '$lib/relays';
 
 const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinus6mo = Math.floor(unixTime - 60 * 60 * 24 * 365 / 2);
@@ -16,8 +16,8 @@ export async function get() {
   // take the data with a grain of salt
 
   let events = [];
-  relays.forEach((relay, relayIndex) => {
-    const ws = new WebSocket(relay);
+  relayList.forEach((relay, relayIndex) => {
+    const ws = new WebSocket(relay.name);
 
     ws.on('error', (error) => {
       // do nothing
@@ -38,7 +38,7 @@ export async function get() {
         // sometimes event returns undefined...
         if (event) {
           if (event.created_at < Date.now() / 1000 && event.content != "") {
-            event.relay = relays[relayIndex];
+            event.relay = relay
             events.push(event);
           }
         }
