@@ -1,6 +1,8 @@
 <script>
   import Bar from "svelte-chartjs/src/Bar.svelte";
   import _ from "underscore";
+  import { slide } from "svelte/transition";
+  import { cubicOut } from "svelte/easing";
   export let relayData;
 
   // note: it's 6 because beyond that it's too cramped
@@ -80,7 +82,10 @@
   <Bar {data} {options} />
   <!-- button -->
   {#if !isExpanded}
-    <div class="flex mt-10">
+    <div
+      class="flex mt-10"
+      transition:slide={{ duration: 200, easing: cubicOut }}
+    >
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
@@ -106,7 +111,10 @@
   {/if}
 
   {#if isExpanded}
-    <div class="flex flex-col mt-10">
+    <div
+      class="flex flex-col mt-10"
+      transition:slide={{ duration: 200, easing: cubicOut }}
+    >
       <div class="flex justify-between text-stone-400 mb-2">
         <span>relay</span>
         <span>event count (24H)</span>
@@ -127,7 +135,10 @@
       </div>
     </div>
 
-    <div class="flex mt-5">
+    <div
+      class="flex mt-5"
+      transition:slide={{ duration: 200, easing: cubicOut }}
+    >
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
