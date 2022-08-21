@@ -35,10 +35,12 @@
 
   let tweets = allTweets.slice(0, shortListAmount);
 
+  // TODO: fix this!
+  // adjust this to the API output
   let allFoundIn = [];
   for (let i = 0; i < allTweets.length; i++) {
     // shuffle the foundIn array just for the aesthetic
-    allFoundIn.push(_.shuffle(data.where[i][1]));
+    allFoundIn.push(_.shuffle(data.where[i].existsIn));
   }
   let foundIn = allFoundIn.slice(0, shortListAmount);
 

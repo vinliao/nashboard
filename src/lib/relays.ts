@@ -3,33 +3,30 @@
 // use short alias, replace space with a dot `.`
 // */
 
-const relayList = [
-  ["wss://nostr-pub.wellorder.net", 'wellorder'],
-  ["wss://relayer.fiatjaf.com", 'fiatjaf'],
-  ["wss://nostr.rocks", 'nostr.rocks'],
-  ["wss://rsslay.fiatjaf.com", 'rsslay'],
-  ["wss://freedom-relay.herokuapp.com/ws", 'freedom.relay'],
-  ["wss://nostr-relay.freeberty.net", 'freeberty'],
-  ["wss://nostr.bitcoiner.social", 'bitcoiner.social'],
-  ["wss://nostr-relay.wlvs.space", 'wlvs.space'],
-  ["wss://nostr.onsats.org", 'onsats'],
-  ["wss://nostr-relay.untethr.me", 'untethr'],
-  ["wss://nostr.drss.io", 'drss'],
-  ["wss://nostr.unknown.place", 'unknown.place'],
-  ["wss://relay.damus.io", 'damus'],
-  ["wss://nostr.openchain.fr", 'openchain'],
-  ["wss://nostr.delo.software", 'delo'],
-  ["wss://relay.minds.com/nostr/v1/ws", 'minds'],
-  ["wss://nostr.oxtr.dev", 'oxtr'],
-  ["wss://moonbreeze.richardbondi.net/ws", 'richardbondi'],
-  ["wss://nostr.semisol.dev", 'semisol'],
-  ["wss://nostr-pub.semisol.dev", 'semisol.pub']
-];
-
-export let relays = [];
-export let relayAliases = [];
-
-for (let i = 0; i < relayList.length; i++) {
-  relays.push(relayList[i][0]);
-  relayAliases.push(relayList[i][1]);
+interface RelayInterface {
+  name: string,
+  alias: string,
 }
+
+export const relayList: RelayInterface[] = [
+  { name: "wss://nostr-pub.wellorder.net", alias: 'wellorder' },
+  { name: "wss://relayer.fiatjaf.com", alias: 'fiatjaf' },
+  { name: "wss://nostr.rocks", alias: 'nostr.rocks' },
+  { name: "wss://rsslay.fiatjaf.com", alias: 'rsslay' },
+  { name: "wss://freedom-relay.herokuapp.com/ws", alias: 'freedom.relay' },
+  { name: "wss://nostr-relay.freeberty.net", alias: 'freeberty' },
+  { name: "wss://nostr.bitcoiner.social", alias: 'bitcoiner.social' },
+  { name: "wss://nostr-relay.wlvs.space", alias: 'wlvs.space' },
+  { name: "wss://nostr.onsats.org", alias: 'onsats' },
+  { name: "wss://nostr-relay.untethr.me", alias: 'untethr' },
+  { name: "wss://nostr.drss.io", alias: 'drss' },
+  { name: "wss://nostr.unknown.place", alias: 'unknown.place' },
+  { name: "wss://relay.damus.io", alias: 'damus' },
+  { name: "wss://nostr.openchain.fr", alias: 'openchain' },
+  { name: "wss://nostr.delo.software", alias: 'delo' },
+  { name: "wss://relay.minds.com/nostr/v1/ws", alias: 'minds' },
+  { name: "wss://nostr.oxtr.dev", alias: 'oxtr' },
+  { name: "wss://moonbreeze.richardbondi.net/ws", alias: 'richardbondi' },
+  { name: "wss://nostr.semisol.dev", alias: 'semisol' },
+  { name: "wss://nostr-pub.semisol.dev", alias: 'semisol.pub' }
+];

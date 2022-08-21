@@ -5,7 +5,7 @@
   const { toggleTweetLength } = getContext("expander");
 
   export let tweets;
-  export let foundIn;
+  export let foundIn = [];
   export let shortListAmount;
 </script>
 

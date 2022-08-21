@@ -4,12 +4,6 @@
   export let message;
   export let pubkey;
   export let foundIn;
-
-  // shuffle foundIn because why not
-  // foundIn = _.shuffle(foundIn)
-  // for (let i = 0; i < foundIn.length; i++) {
-  //   foundIn[i] = _.shuffle(foundIn[i]);
-  // }
 </script>
 
 <div class="mb-10">
@@ -22,29 +16,31 @@
   <p class="break-words text-stone-500  mb-2">
     {message}
   </p>
-  <div class="flex text-sm flex-wrap">
-    {#each foundIn as place}
-      {#if place == "wellorder"}
-        <span
-          class="border mr-0.5 mb-0.5 border-cyan-200 rounded-md px-1 text-blue-400"
-          >{place}</span
-        >
-      {:else if place == "minds"}
-        <span
-          class="border mr-0.5 mb-0.5 border-yellow-200 rounded-md px-1 text-yellow-600"
-          >{place}</span
-        >
-      {:else if place == "damus"}
-        <span
-          class="border mr-0.5 mb-0.5 border-red-200 rounded-md px-1 text-red-400"
-          >{place}</span
-        >
-      {:else}
-        <span
-          class="border mr-0.5 mb-0.5 border-stone-300 rounded-md px-1 text-stone-500"
-          >{place}</span
-        >
-      {/if}
-    {/each}
-  </div>
+  {#if foundIn}
+    <div class="flex text-sm flex-wrap">
+      {#each foundIn as place}
+        {#if place == "wellorder"}
+          <span
+            class="border mr-0.5 mb-0.5 border-cyan-200 rounded-md px-1 text-blue-400"
+            >{place}</span
+          >
+        {:else if place == "minds"}
+          <span
+            class="border mr-0.5 mb-0.5 border-yellow-200 rounded-md px-1 text-yellow-600"
+            >{place}</span
+          >
+        {:else if place == "damus"}
+          <span
+            class="border mr-0.5 mb-0.5 border-red-200 rounded-md px-1 text-red-400"
+            >{place}</span
+          >
+        {:else}
+          <span
+            class="border mr-0.5 mb-0.5 border-stone-300 rounded-md px-1 text-stone-500"
+            >{place}</span
+          >
+        {/if}
+      {/each}
+    </div>
+  {/if}
 </div>
