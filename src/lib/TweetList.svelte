@@ -44,7 +44,7 @@
 
   {#if !extended}
     <!-- button -->
-    <div class="flex" in:fly={{ y: 10, duration: 200, easing: cubicOut }}>
+    <div class="flex mt-5" in:fly={{ y: 10, duration: 200, easing: cubicOut }}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
