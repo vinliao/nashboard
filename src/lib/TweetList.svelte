@@ -29,7 +29,7 @@
   {#if extended}
     <div
       class="flex flex-col"
-      transition:fly={{ y: -20, duration: 200, easing: cubicOut }}
+      transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
     >
       {#each extendedTweets as tweet, tweetIndex}
         <Tweet
@@ -44,7 +44,7 @@
 
   {#if !extended}
     <!-- button -->
-    <div class="flex" in:slide={{duration:200, easing:cubicOut}}>
+    <div class="flex" in:fly={{ y: 10, duration: 200, easing: cubicOut }}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
@@ -71,7 +71,7 @@
     </div>
   {:else}
     <!-- button -->
-    <div class="flex" out:slide={{duration:200, easing:cubicOut}}>
+    <div class="flex" in:fly={{ y: -10, duration: 200, easing: cubicOut }}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
