@@ -1,7 +1,7 @@
 <script>
   import Bar from "svelte-chartjs/src/Bar.svelte";
   import _ from "underscore";
-  import { slide } from "svelte/transition";
+  import { slide, fly } from "svelte/transition";
   import { cubicOut } from "svelte/easing";
   export let relayData;
 
@@ -80,36 +80,6 @@
     >MOST CROWDED RELAYS (24H)</span
   >
   <Bar {data} {options} />
-  <!-- button -->
-  {#if !isExpanded}
-    <div
-      class="flex mt-10"
-      transition:slide={{ duration: 200, easing: cubicOut }}
-    >
-      <div class="flex-1" />
-      <div
-        class="flex items-center space-x-1 hover:cursor-pointer"
-        on:click={toggleExpand}
-      >
-        <span class="text-stone-500 font-mono tracking-widest">more</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 text-stone-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </div>
-    </div>
-  {/if}
-
   {#if isExpanded}
     <div
       class="flex flex-col mt-10"
@@ -134,11 +104,38 @@
         {/each}
       </div>
     </div>
+  {/if}
 
+  <!-- button -->
+  {#if !isExpanded}
     <div
-      class="flex mt-5"
-      transition:slide={{ duration: 200, easing: cubicOut }}
+      class="flex mt-10"
+      in:fly={{ y: -10, duration: 200, easing: cubicOut }}
     >
+      <div class="flex-1" />
+      <div
+        class="flex items-center space-x-1 hover:cursor-pointer"
+        on:click={toggleExpand}
+      >
+        <span class="text-stone-500 font-mono tracking-widest">more</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4 text-stone-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
+    </div>
+  {:else}
+    <div class="flex mt-5" in:fly={{ y: 10, duration: 200, easing: cubicOut }}>
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
