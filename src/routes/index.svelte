@@ -30,7 +30,7 @@
 
   const allTweets = data.events;
   const shortListAmount = 8;
-  const longListAmount = Math.min(40, allTweets.length);
+  const longListAmount = Math.min(30, allTweets.length);
 
   let tweets = allTweets.slice(0, shortListAmount);
   let extendedTweets = allTweets.slice(shortListAmount, longListAmount);
