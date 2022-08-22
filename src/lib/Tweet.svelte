@@ -6,7 +6,7 @@
   export let foundIn;
 </script>
 
-<div class="mb-10">
+<div class="mt-5">
   <div class="flex justify-between mb-2">
     <span class="text-stone-600 font-semibold"
       >{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span

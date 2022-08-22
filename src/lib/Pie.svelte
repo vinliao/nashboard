@@ -39,7 +39,7 @@
   };
 </script>
 
-<div class="p-5 border-2 border-orange-200 bg-white">
+<div class="pt-5 xl:p-5 border-2 border-orange-200 bg-white">
   <span class="block text-center mb-3 text-lg text-orange-500 font-bold tracking-tighter"
     >EVENT KINDS (24H)</span
   >
