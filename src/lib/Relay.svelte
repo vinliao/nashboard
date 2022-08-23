@@ -81,17 +81,25 @@
   >
   <Bar {data} {options} />
   {#if isExpanded}
-    <div
-      class="flex flex-col mt-5"
-      transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
-    >
-      <div class="flex justify-between text-stone-400 mb-2">
+    <div class="flex flex-col mt-5">
+      <div
+        class="flex justify-between text-stone-400 mb-2"
+        transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
+      >
         <span>relay</span>
         <span>event count (24H)</span>
       </div>
       <div class="flex flex-col text-stone-500">
-        {#each allSortedRelays as relay}
-          <div class="flex justify-between">
+        {#each allSortedRelays as relay, i}
+          <div
+            class="flex justify-between"
+            transition:fly={{
+              y: -10,
+              duration: 200,
+              delay: i * 20,
+              easing: cubicOut,
+            }}
+          >
             <span class="shrink-0">{relay[0]}</span>
             <!-- <div class="w-full border-b" /> -->
             <div class="w-full flex flex-col px-3">
@@ -108,10 +116,7 @@
 
   <!-- button -->
   {#if !isExpanded}
-    <div
-      class="flex mt-5"
-      in:fly={{ y: -10, duration: 200, easing: cubicOut }}
-    >
+    <div class="flex mt-5">
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
