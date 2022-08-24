@@ -7,13 +7,13 @@
 </script>
 
 <div class="mt-5">
-  <div class="flex justify-between mb-2">
+  <div class="flex justify-between">
     <span class="text-stone-600 font-semibold"
       >{pubkey.slice(0, 5) + "..." + pubkey.slice(-5)}</span
     >
     <span class="text-stone-400">{format(time * 1000)}</span>
   </div>
-  <p class="break-words text-stone-500  mb-2">
+  <p class="break-words text-stone-500 mb-1">
     {message}
   </p>
   {#if foundIn}
