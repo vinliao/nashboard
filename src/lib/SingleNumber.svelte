@@ -2,13 +2,12 @@
   export let number;
   export let label;
   import { tweened } from "svelte/motion";
-  import { cubicOut } from "svelte/easing";
+  import { cubicInOut } from "svelte/easing";
 
   const progress = tweened(0, {
     duration: 1500,
-    easing: cubicOut,
+    easing: cubicInOut,
   });
-
 
   progress.set(number);
 </script>
@@ -19,6 +18,8 @@
     >{label}</span
   >
   <div class="text-center">
-    <span class="text-4xl text-stone-700 tracking-[-0.075em]">{Math.floor($progress)}</span>
+    <span class="text-4xl text-stone-700 tracking-[-0.075em]"
+      >{Math.floor($progress)}</span
+    >
   </div>
 </div>
