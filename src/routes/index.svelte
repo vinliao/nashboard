@@ -25,8 +25,7 @@
   import MiddleText from "$lib/MiddleText.svelte";
   import TweetList from "$lib/TweetList.svelte";
   import LinkOut from "$lib/LinkOut.svelte";
-  import Heatmap from "$lib/Heatmap.svelte";
-  import HeatmapBig from "$lib/HeatmapBig.svelte";
+  import Month from "$lib/Month.svelte";
 
   const allTweets = data.events;
   const shortListAmount = 8;
@@ -72,7 +71,7 @@
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
       <Relay relayData={data.relays} />
-      <Heatmap />
+      <Month/>
     </div>
   </div>
 
@@ -94,7 +93,7 @@
         <Activity networkActivity={data.utc} />
         <Pie kinds={data.kinds} />
         <Relay relayData={data.relays} />
-        <HeatmapBig />
+        <Month/>
       </div>
     </div>
   </div>
