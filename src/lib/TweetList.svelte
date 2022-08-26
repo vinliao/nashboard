@@ -8,12 +8,18 @@
   export let foundIn = [];
 
   let extended = false;
+  let fetching = false;
 
   async function getRecentEvents() {
+    extended = false;
+    fetching = true;
+
     tweets = [];
     extendedTweets = [];
     await fetch("/api/data/insert/events"); // fill redis cache
     const body = await (await fetch("/api/data/get/events")).json();
+
+    fetching = false;
 
     tweets = body.events.slice(0, 8); // 8 is shortListAmount
     extendedTweets = body.events;
@@ -47,22 +53,12 @@
     </div>
   </div>
 
-  <div class="flex flex-col">
-    {#each tweets as tweet, tweetIndex}
-      <Tweet
-        time={tweet.created_at}
-        message={tweet.content}
-        pubkey={tweet.pubkey}
-        foundIn={foundIn[tweetIndex]}
-      />
-    {/each}
-  </div>
-  {#if extended}
+  {#key tweets}
     <div
       class="flex flex-col"
-      transition:fly={{ y: -10, duration: 200, easing: cubicOut }}
+      transition:slide={{ duration: 1200, easing: cubicOut }}
     >
-      {#each extendedTweets as tweet, tweetIndex}
+      {#each tweets as tweet, tweetIndex}
         <Tweet
           time={tweet.created_at}
           message={tweet.content}
@@ -71,11 +67,99 @@
         />
       {/each}
     </div>
+    {#if extended}
+      <div
+        class="flex flex-col"
+        in:fly={{ y: -10, duration: 200, easing: cubicOut }}
+        out:slide={{ duration: 100 }}
+      >
+        {#each extendedTweets as tweet, tweetIndex}
+          <Tweet
+            time={tweet.created_at}
+            message={tweet.content}
+            pubkey={tweet.pubkey}
+            foundIn={foundIn[tweetIndex]}
+          />
+        {/each}
+      </div>
+    {/if}
+  {/key}
+
+  {#if fetching}
+    <div class="flex justify-center text-orange-500 py-5">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 animate-spin"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z"
+        />
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 animate-spin text-stone-700"
+      >
+        <path stroke-linecap="round" d="M5 12h14" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 animate-spin"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 5.25v13.5m-7.5-13.5v13.5"
+        />
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 animate-spin text-stone-700"
+      >
+        <path stroke-linecap="round" d="M5 12h14" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 animate-spin"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z"
+        />
+      </svg>
+    </div>
   {/if}
 
-  {#if !extended}
+  {#if !extended && !fetching}
     <!-- button -->
-    <div class="flex mt-5" in:fly={{ y: 10, duration: 200, easing: cubicOut }}>
+    <div
+      class="flex mt-5"
+      in:fly={{ y: 10, duration: 200, easing: cubicOut, delay: 1500 }}
+    >
       <div class="flex-1" />
       <div
         class="flex items-center space-x-1 hover:cursor-pointer"
