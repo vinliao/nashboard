@@ -85,10 +85,14 @@ export async function get() {
   // key: utc, value: the count of event in that time
   const UTCList: { [utc: string]: number; } = _.countBy(eventsUTC);
 
-  const rawData = JSON.stringify({ utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray });
+  const body = { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray };
+  const rawData = JSON.stringify(body);
 
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
   let client = new Redis(upstashUrl);
   client.set('event_body', rawData);
-  return { body: { status: 200 } };
+
+  // returns the whole data so TweetList doesn't 
+  // have to send get request to redis again
+  return { body: { status: 200, body } };
 }

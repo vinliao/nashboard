@@ -16,8 +16,8 @@
 
     tweets = [];
     extendedTweets = [];
-    await fetch("/api/data/insert/events"); // fill redis cache
-    const body = await (await fetch("/api/data/get/events")).json();
+    const response = await (await fetch("/api/data/insert/events")).json(); // fill redis cache
+    const body = await response.body;
 
     fetching = false;
 
