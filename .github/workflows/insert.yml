@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull events from relays
-        run: curl -s -X GET "https://rococo-belekoy-885436.netlify.app/api/data/insert"
+        run: curl -s -X GET "https://rococo-belekoy-885436.netlify.app/api/data/insert/events"
