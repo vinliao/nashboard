@@ -1,13 +1,10 @@
-import supabase from '$lib/db';
+import Redis from 'ioredis';
 
 export async function get() {
-  const { data, error } = await supabase
-    .from('event_data')
-    .select('body')
-    .order('id', { ascending: false })
-    .limit(1);
-
-  const body = JSON.parse(data[0].body);
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl);
+  const rawData = await client.get('event_body');
+  const body = JSON.parse(rawData);
 
   return { body };
 }

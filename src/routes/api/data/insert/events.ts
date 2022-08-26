@@ -1,4 +1,4 @@
-import supabase from '$lib/db';
+import Redis from 'ioredis';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -87,14 +87,8 @@ export async function get() {
 
   const rawData = JSON.stringify({ utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray });
 
-  const { data, error } = await supabase
-    .from('event_data')
-    .insert([{
-      body: rawData
-    }]);
-
-  if (error) return { body: { status: 500, error: error } };
-  return {
-    body: { status: 200 }
-  };
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl);
+  client.set('event_body', rawData);
+  return { body: { status: 200 } };
 }
