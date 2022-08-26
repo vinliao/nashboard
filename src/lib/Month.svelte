@@ -31,10 +31,7 @@
         ticks: { font: { size: 12 }, color: "#57534e", precision: 0 },
         display: true,
         title: {
-          display: true,
-          text: "Event count",
-          font: { size: 16 },
-          color: "#a8a29e",
+          display: false,
         },
       },
     },
