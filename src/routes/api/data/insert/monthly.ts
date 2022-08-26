@@ -1,3 +1,4 @@
+import supabase from '$lib/db';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -66,8 +67,16 @@ export async function get() {
     }
   }
 
-  const heatmapData = _.countBy(events, "created_at");
+  const monthlyData = _.countBy(events, "created_at");
+  const monthlyDataRaw = JSON.stringify(monthlyData);
+  const { data, error } = await supabase
+    .from('monthly_data')
+    .insert([{
+      monthly_count: monthlyDataRaw
+    }]);
 
-  // to get heatmap data, send a GET request to /api/data/heatmap
-  return { body: { "length": events.length, 'heatmap': heatmapData } };
+  if (error) return { body: { status: 500, error: error } };
+  return {
+    body: { status: 200 }
+  };
 }

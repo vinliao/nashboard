@@ -11,6 +11,7 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@supabase/supabase-js": "^1.8.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"autoprefixer": "^10.4.2",
@@ -23,11 +24,11 @@
 		"prettier-plugin-svelte": "^2.5.0",
 		"svelte": "^3.44.0",
 		"svelte-preprocess": "^4.10.1",
-		"tailwindcss": "^3.0.12",
-		"@supabase/supabase-js": "^1.8.0"
+		"tailwindcss": "^3.0.12"
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-netlify": "^1.0.0-next.72",
 		"frappe-charts": "^1.6.2",
 		"svelte-chartjs": "^1.1.4",
 		"timeago.js": "^4.0.2",

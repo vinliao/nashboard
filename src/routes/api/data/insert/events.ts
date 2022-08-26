@@ -1,13 +1,3 @@
-
-// export async function get() {
-//   const { data, error } = await supabase
-//     .from('cities')
-//     .insert([{ name: 'The Shire' }]);
-
-//   console.log(data);
-//   console.log(error);
-// }
-
 import supabase from '$lib/db';
 import _ from 'underscore';
 import WebSocket from 'ws';
