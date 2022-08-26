@@ -1,3 +1,4 @@
+import Redis from 'ioredis';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -67,15 +68,9 @@ export async function get() {
   }
 
   const monthlyData = _.countBy(events, "created_at");
-  // const monthlyDataRaw = JSON.stringify(monthlyData);
-  // const { data, error } = await supabase
-  //   .from('monthly_data')
-  //   .insert([{
-  //     monthly_count: monthlyDataRaw
-  //   }]);
-
-  // if (error) return { body: { status: 500, error: error } };
-  // return {
-  //   body: { status: 200 }
-  // };
+  const monthlyDataRaw = JSON.stringify(monthlyData);
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl);
+  client.set('monthly_data', monthlyDataRaw);
+  return { body: { status: 200 } };
 }

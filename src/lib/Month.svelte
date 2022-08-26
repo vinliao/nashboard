@@ -1,8 +1,8 @@
 <script>
+  export let monthlyData;
   import Line from "svelte-chartjs/src/Line.svelte";
-  import { monthlyData } from "$lib/monthlyData";
 
-  let data = {
+  let chartData = {
     datasets: [
       {
         label: "AM",
@@ -44,8 +44,8 @@
 <div class="p-5 border-2 border-orange-200 bg-white">
   <span
     class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
-    >MONTHLY NETWORK ACTIVITY</span
+    >TOTAL UNIQUE EVENTS (1MO)</span
   >
 
-  <Line {data} {options} />
+  <Line data={chartData} {options} />
 </div>

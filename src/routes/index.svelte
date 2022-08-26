@@ -2,13 +2,17 @@
   export async function load({ fetch }) {
     // to prevent the constant loading, store data in
     // svelte store, then only fetch if svelte store is empty
-    const response = await fetch("/api/data");
+    const response = await fetch("/api/data/get/events");
     const data = await response.json();
+
+    const monthlyResponse = await fetch("/api/data/get/monthly");
+    const monthlyData = await monthlyResponse.json();
 
     return {
       status: response.status,
       props: {
         data: data,
+        monthlyData: monthlyData,
       },
     };
   }
@@ -16,6 +20,7 @@
 
 <script>
   export let data = {};
+  export let monthlyData = {};
   import _ from "underscore";
   import Activity from "$lib/Activity.svelte";
   import Pie from "$lib/Pie.svelte";
@@ -71,7 +76,7 @@
     <div class="space-y-1">
       <Pie kinds={data.kinds} />
       <Relay relayData={data.relays} />
-      <Month/>
+      <Month {monthlyData} />
     </div>
   </div>
 
@@ -93,7 +98,7 @@
         <Activity networkActivity={data.utc} />
         <Pie kinds={data.kinds} />
         <Relay relayData={data.relays} />
-        <Month/>
+        <Month {monthlyData} />
       </div>
     </div>
   </div>
