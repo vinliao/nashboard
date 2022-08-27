@@ -1,11 +1,11 @@
 <script>
-  export let monthlyData;
+  export let yearlyData;
   import Line from "svelte-chartjs/src/Line.svelte";
 
   let chartData = {
     datasets: [
       {
-        data: monthlyData,
+        data: yearlyData,
         borderColor: "#fdba74",
         backgroundColor: "#fff7ed",
         lineTension: 0.4,
@@ -41,7 +41,7 @@
 <div class="p-5 border-2 border-orange-200 bg-white">
   <span
     class="block text-center pb-3 text-lg text-orange-500 font-bold tracking-tighter"
-    >TOTAL UNIQUE EVENTS (1MO)</span
+    >TOTAL UNIQUE EVENTS (1YR)</span
   >
 
   <Line data={chartData} {options} />

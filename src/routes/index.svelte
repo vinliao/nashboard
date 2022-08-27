@@ -8,11 +8,15 @@
     const monthlyResponse = await fetch("/api/data/get/monthly");
     const monthlyData = await monthlyResponse.json();
 
+    const yearlyResponse = await fetch("/api/data/get/yearly");
+    const yearlyData = await yearlyResponse.json();
+
     return {
       status: response.status,
       props: {
         data: data,
         monthlyData: monthlyData,
+        yearlyData: yearlyData,
       },
     };
   }
@@ -21,6 +25,7 @@
 <script>
   export let data = {};
   export let monthlyData = {};
+  export let yearlyData = {};
   import _ from "underscore";
   import Activity from "$lib/Activity.svelte";
   import Pie from "$lib/Pie.svelte";
@@ -31,6 +36,7 @@
   import TweetList from "$lib/TweetList.svelte";
   import LinkOut from "$lib/LinkOut.svelte";
   import Month from "$lib/Month.svelte";
+  import Year from "$lib/Year.svelte";
 
   const allTweets = data.events;
   const shortListAmount = 8;
@@ -77,6 +83,7 @@
       <Pie kinds={data.kinds} />
       <Relay relayData={data.relays} />
       <Month {monthlyData} />
+      <Year {yearlyData} />
     </div>
   </div>
 
@@ -99,6 +106,7 @@
         <Pie kinds={data.kinds} />
         <Relay relayData={data.relays} />
         <Month {monthlyData} />
+        <Year {yearlyData} />
       </div>
     </div>
   </div>
