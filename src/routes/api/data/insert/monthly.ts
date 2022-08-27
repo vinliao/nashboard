@@ -30,8 +30,7 @@ export async function get() {
         // sometimes event returns undefined...
         if (event) {
           if (event.created_at < Date.now() / 1000 && event.content != "") {
-            event.relay = relay;
-            events.push(event);
+            events.push({ id: event.id, created_at: event.created_at });
           }
         }
       }
