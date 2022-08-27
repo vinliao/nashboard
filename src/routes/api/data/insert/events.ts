@@ -1,3 +1,4 @@
+import Redis from 'ioredis';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -55,10 +56,10 @@ export async function get() {
   });
 
   // wait the events to collect first
-  await new Promise(r => setTimeout(r, 2200));
+  await new Promise(r => setTimeout(r, 5000));
 
   const uniqueEvents: EventInterface[] = _.uniq(events, (event) => event.id);
-  const latestEvents: EventInterface[] = _.sortBy(uniqueEvents, "created_at").reverse();
+  const latestEvents: EventInterface[] = _.sortBy(uniqueEvents, "created_at").reverse().slice(0, 30); // 30 is longListAmount
   const kindsList: { [kind: string]: number; } = _.countBy(events, "kind");
   const relayCount: { [kind: string]: number; } = _.countBy(events, (event) => event.relay.name);
   const uniquePubkeys: number = _.uniq(events, (event) => event.pubkey).length;
@@ -84,5 +85,14 @@ export async function get() {
   // key: utc, value: the count of event in that time
   const UTCList: { [utc: string]: number; } = _.countBy(eventsUTC);
 
-  return { body: { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray } };
+  const body = { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray };
+  const rawData = JSON.stringify(body);
+
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl);
+  client.set('event_body', rawData);
+
+  // returns the whole data so TweetList doesn't 
+  // have to send get request to redis again
+  return { body: { status: 200, body } };
 }

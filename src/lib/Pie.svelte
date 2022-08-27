@@ -25,6 +25,7 @@
   };
 
   const options = {
+    animation: false,
     layout: {padding: {left: 40, right: 40, bottom: 20}},
     plugins: {
       legend: {
