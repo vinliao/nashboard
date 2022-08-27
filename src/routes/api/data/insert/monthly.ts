@@ -47,7 +47,7 @@ export async function get() {
     });
   });
 
-  await new Promise(r => setTimeout(r, 4000));
+  await new Promise(r => setTimeout(r, 3000));
 
   // duplicate events don't count
   events = _.uniq(events, (event) => event.id);
