@@ -7,15 +7,6 @@ const unixTime = Math.floor(Date.now() / 1000);
 const unixTimeMinux1mo = Math.floor(unixTime - 60 * 60 * 24 * 30);
 
 export async function get() {
-
-  // tl;dr
-  // 1. take all events from the past six months
-  // 2. "squash" the timestamp
-  // 3. use _.countBy to count the timestamps
-
-  // there may be implementation error in this (i think it's likely)
-  // take the data with a grain of salt
-
   let events = [];
   relayList.forEach((relay, relayIndex) => {
     const ws = new WebSocket(relay.name);
@@ -47,7 +38,7 @@ export async function get() {
     });
   });
 
-  await new Promise(r => setTimeout(r, 4000));
+  await new Promise(r => setTimeout(r, 5000));
 
   // duplicate events don't count
   events = _.uniq(events, (event) => event.id);
@@ -70,9 +61,7 @@ export async function get() {
   const monthlyData = _.countBy(events, "created_at");
   const monthlyDataRaw = JSON.stringify(monthlyData);
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
-  let client = new Redis(upstashUrl, {
-    connectTimeout: 10000 // so netlify function doesn't crash
-  });
+  let client = new Redis(upstashUrl);
   client.set('monthly_data', monthlyDataRaw);
   return { body: { status: 200 } };
 }
