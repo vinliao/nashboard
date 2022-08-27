@@ -16,6 +16,7 @@
   };
 
   const options = {
+    animation: false,
     aspectRatio: 1,
     plugins: {
       legend: {
