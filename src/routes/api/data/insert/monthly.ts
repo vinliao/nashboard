@@ -47,7 +47,7 @@ export async function get() {
     });
   });
 
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 4000));
 
   // duplicate events don't count
   events = _.uniq(events, (event) => event.id);
@@ -69,7 +69,6 @@ export async function get() {
 
   const monthlyData = _.countBy(events, "created_at");
   const monthlyDataRaw = JSON.stringify(monthlyData);
-  console.log(monthlyData);
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
   let client = new Redis(upstashUrl);
   client.set('monthly_data', monthlyDataRaw);

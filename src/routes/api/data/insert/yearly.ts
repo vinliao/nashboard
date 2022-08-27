@@ -44,7 +44,7 @@ export async function get() {
   events = _.uniq(events, (event) => event.id);
   events = events.filter(event => event.created_at > unixTimeMinux1yr && event.created_at < unixTime);
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 12; i++) {
     const currentTimestamp = Math.floor(Date.now() / 1000);
     const fromTimestamp = Math.floor(currentTimestamp - 60 * 60 * 24 * 30 * (i + 1));
     const toTimestamp = Math.floor(currentTimestamp - 60 * 60 * 24 * 30 * i);
