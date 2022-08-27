@@ -47,14 +47,14 @@ export async function get() {
     });
   });
 
-  await new Promise(r => setTimeout(r, 2000));
+  await new Promise(r => setTimeout(r, 5000));
 
   // duplicate events don't count
   events = _.uniq(events, (event) => event.id);
   events = events.filter(event => event.created_at > unixTimeMinux1mo && event.created_at < unixTime);
 
+  const currentTimestamp = Math.floor(Date.now() / 1000);
   for (let i = 0; i < 30; i++) {
-    const currentTimestamp = Math.floor(Date.now() / 1000);
     const fromTimestamp = Math.floor(currentTimestamp - 60 * 60 * 24 * (i + 1));
     const toTimestamp = Math.floor(currentTimestamp - 60 * 60 * 24 * i);
 
@@ -70,7 +70,9 @@ export async function get() {
   const monthlyData = _.countBy(events, "created_at");
   const monthlyDataRaw = JSON.stringify(monthlyData);
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
-  let client = new Redis(upstashUrl);
+  let client = new Redis(upstashUrl, {
+    connectTimeout: 10000 // so netlify function doesn't crash
+  });
   client.set('monthly_data', monthlyDataRaw);
   return { body: { status: 200 } };
 }
