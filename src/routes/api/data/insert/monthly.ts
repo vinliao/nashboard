@@ -60,7 +60,7 @@ export async function get() {
   const monthlyData = _.countBy(events, "created_at");
   const monthlyDataRaw = JSON.stringify(monthlyData);
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
-  let client = new Redis(upstashUrl);
+  let client = new Redis(upstashUrl, { connectTimeout: 10000 });
   client.set('monthly_data', monthlyDataRaw);
   return { body: { status: 200 } };
 }
