@@ -89,7 +89,7 @@ export async function get() {
   const rawData = JSON.stringify(body);
 
   const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
-  let client = new Redis(upstashUrl);
+  let client = new Redis(upstashUrl, { connectTimeout: 10000 });
   client.set('event_body', rawData);
 
   // returns the whole data so TweetList doesn't 
