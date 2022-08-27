@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull events from relays, then cache on Redis
-        run: curl -s -X GET "https://rococo-belekoy-885436.netlify.app/api/data/insert/events"
+        run: curl -s -X GET "https://nashboard.space/api/data/insert/events"
