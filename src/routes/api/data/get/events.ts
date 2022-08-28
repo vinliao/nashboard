@@ -1,12 +1,10 @@
+import Redis from 'ioredis';
+
 export async function get() {
-  const upstashBearer = import.meta.env.VITE_UPSTASH_BEARER;
-  const response = await fetch("https://global-fond-mastiff-31218.upstash.io/get/event_body", {
-    headers: {
-      Authorization: `Bearer ${upstashBearer}`
-    }
-  });
-  const rawBody = await response.json();
-  const body = JSON.parse(rawBody.result);
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl);
+  const rawData = await client.get('event_body');
+  const body = JSON.parse(rawData);
 
   return { body };
 }

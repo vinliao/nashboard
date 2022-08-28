@@ -1,3 +1,4 @@
+import Redis from 'ioredis';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -87,14 +88,9 @@ export async function get() {
   const body = { utc: UTCList, uniquePubkeys: uniquePubkeys, kinds: kindsList, relays: relayCount, eventCount: events.length, events: latestEvents, where: whereArray };
   const rawData = JSON.stringify(body);
 
-  const upstashBearer = import.meta.env.VITE_UPSTASH_BEARER;
-  await fetch("https://global-fond-mastiff-31218.upstash.io/set/event_body", {
-    headers: {
-      Authorization: `Bearer ${upstashBearer}`
-    },
-    body: rawData,
-    method: 'POST',
-  });
+  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
+  let client = new Redis(upstashUrl, { connectTimeout: 10000 });
+  client.set('event_body', rawData);
 
   // returns the whole data so TweetList doesn't 
   // have to send get request to redis again
