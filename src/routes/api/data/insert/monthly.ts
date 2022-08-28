@@ -1,4 +1,3 @@
-import Redis from 'ioredis';
 import _ from 'underscore';
 import WebSocket from 'ws';
 import { relayList } from '$lib/relays';
@@ -37,7 +36,7 @@ export async function get() {
     });
   });
 
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 25000));
 
   // duplicate events don't count
   events = _.uniq(events, (event) => event.id);
@@ -59,8 +58,14 @@ export async function get() {
 
   const monthlyData = _.countBy(events, "created_at");
   const monthlyDataRaw = JSON.stringify(monthlyData);
-  const upstashUrl = import.meta.env.VITE_UPSTASH_URL;
-  let client = new Redis(upstashUrl, { connectTimeout: 10000 });
-  client.set('monthly_data', monthlyDataRaw);
+  const upstashBearer = import.meta.env.VITE_UPSTASH_BEARER;
+  await fetch("https://global-fond-mastiff-31218.upstash.io/set/monthly_data", {
+    headers: {
+      Authorization: `Bearer ${upstashBearer}`
+    },
+    body: monthlyDataRaw,
+    method: 'POST',
+  });
+
   return { body: { status: 200 } };
 }

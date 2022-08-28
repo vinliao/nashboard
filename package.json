@@ -28,7 +28,6 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-netlify": "^1.0.0-next.72",
-		"ioredis": "^5.2.3",
 		"svelte-chartjs": "^1.1.4",
 		"timeago.js": "^4.0.2",
 		"underscore": "^1.13.2",
