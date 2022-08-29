@@ -44,7 +44,6 @@
           stroke="currentColor"
           class="w-6 h-6 text-stone-500 hover:cursor-pointer hover:text-stone-700 transition"
           on:click={getRecentEvents}
-          in:fade={{ duration: 500, easing: cubicOut }}
         >
           <path
             stroke-linecap="round"
