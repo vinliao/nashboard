@@ -29,5 +29,6 @@ export const relayList: RelayInterface[] = [
   { name: "wss://moonbreeze.richardbondi.net/ws", alias: 'richardbondi' },
   { name: "wss://nostr.semisol.dev", alias: 'semisol' },
   { name: "wss://nostr-pub.semisol.dev", alias: 'semisol.pub' },
-  { name: "wss://nostr.ddns.net", alias: 'nostr.ddns.net' }
+  { name: "wss://nostr.ddns.net", alias: 'nostr.ddns.net' },
+  { name: "wss://nostr.ono.re", alias: 'nostr.ono.re' }
 ];
