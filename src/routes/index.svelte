@@ -1,22 +1,14 @@
 <script context="module">
   export async function load({ fetch }) {
-    // to prevent the constant loading, store data in
-    // svelte store, then only fetch if svelte store is empty
-    const response = await fetch("/api/data/get/events");
+    const response = await fetch("/api/data/get/all");
     const data = await response.json();
-
-    const monthlyResponse = await fetch("/api/data/get/monthly");
-    const monthlyData = await monthlyResponse.json();
-
-    const yearlyResponse = await fetch("/api/data/get/yearly");
-    const yearlyData = await yearlyResponse.json();
 
     return {
       status: response.status,
       props: {
-        data: data,
-        monthlyData: monthlyData,
-        yearlyData: yearlyData,
+        data: data.eventBody,
+        monthlyData: data.monthlyData,
+        yearlyData: data.yearlyData,
       },
     };
   }
