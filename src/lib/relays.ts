@@ -30,5 +30,6 @@ export const relayList: RelayInterface[] = [
   { name: "wss://nostr.semisol.dev", alias: 'semisol' },
   { name: "wss://nostr-pub.semisol.dev", alias: 'semisol.pub' },
   { name: "wss://nostr.ddns.net", alias: 'nostr.ddns.net' },
-  { name: "wss://nostr.ono.re", alias: 'nostr.ono.re' }
+  { name: "wss://nostr.ono.re", alias: 'nostr.ono.re' },
+  { name: "wss://nostr-relay.nonce.academy", alias: 'nonce.academy' }
 ];
