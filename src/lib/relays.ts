@@ -23,6 +23,7 @@ export const relayList: RelayInterface[] = [
   { name: "wss://nostr.unknown.place", alias: 'unknown.place' },
   { name: "wss://relay.damus.io", alias: 'damus' },
   { name: "wss://nostr.openchain.fr", alias: 'openchain' },
+  { name: "wss://nostr.inosta.cc", alias: 'inosta' },
   { name: "wss://nostr.delo.software", alias: 'delo' },
   { name: "wss://relay.minds.com/nostr/v1/ws", alias: 'minds' },
   { name: "wss://nostr.oxtr.dev", alias: 'oxtr' },
