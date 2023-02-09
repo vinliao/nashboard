@@ -15,7 +15,7 @@ export const relayList: RelayInterface[] = [
   { name: "wss://rsslay.fiatjaf.com", alias: 'rsslay' },
   { name: "wss://freedom-relay.herokuapp.com/ws", alias: 'freedom.relay' },
   { name: "wss://nostr-relay.freeberty.net", alias: 'freeberty' },
-  { name: "wss://nostr.bitcoiner.social", alias: 'bitcoiner.social' },
+  { name: "wss://offchain.pub", alias: 'offchain.pub' },
   { name: "wss://nostr-relay.wlvs.space", alias: 'wlvs.space' },
   { name: "wss://nostr.onsats.org", alias: 'onsats' },
   { name: "wss://nostr-relay.untethr.me", alias: 'untethr' },
