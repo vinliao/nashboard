@@ -36,5 +36,6 @@ export const relayList: RelayInterface[] = [
   { name: "wss://relay.realsearch.cc", alias: 'realsearch.cc' },
   { name: "wss://nostr.developer.li", alias: 'developer.li' },
   { name: "wss://nostr.chaker.net", alias: 'chaker' },
-  { name: "wss://relay.nostr.scot", alias: 'nostr.scot' }
+  { name: "wss://relay.nostr.scot", alias: 'nostr.scot' },
+  { name: "wss://relay.nostrhackers.online", alias: 'nostrhackers' }
 ];
